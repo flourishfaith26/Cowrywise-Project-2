@@ -1,0 +1,650 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cowrywise</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-transparent bg-white sticky-top" style="padding: 4px 0px 4px 0px;">
+    <div class="container-fluid mx-5" style="font-family: 'Anton', sans-serif;">
+      <a class="navbar-brand" href="#">
+        <img src="./Images/Cowry logo.svg" alt="Cowrywise Logo" class="cowry-logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-5">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Personal
+            </a>
+            <ul class="dropdown-menu drome px-4 py-0 mt-3 shadow-lg">
+              <div class="d-flex">
+                <div class="border border-start-0 border-top-0 border-bottom-0">
+                  <a class="d-flex align-items-center text-decoration-none gap-3 px-3">
+                    <img src="./Images/saving.svg" alt="" style="width: 10%;">
+                    <div>
+                      <p class="mb-0" href="#"
+                        style="padding-top: 20px; color: #082552; font-weight: 700;font-size: 17px;">Savings</p>
+                      <p style="color: #6c82a3; font-size: 14px;">Save and earn amazing returns</p>
+                    </div>
+                  </a>
+                  <a class="d-flex align-items-center text-decoration-none gap-3 px-3">
+                    <img src="./Images/saving.svg" alt="" style="width: 10%;margin-bottom: 15px">
+                    <div>
+                      <p class="mb-0" href="#" style="color: #082552; font-weight: 700;font-size: 17px;">Mutual Funds
+                      </p>
+                      <p style="color: #6c82a3; font-size: 14px;">Grow your wealth without changing charts</p>
+                    </div>
+                  </a>
+                  <a class="d-flex align-items-center text-decoration-none gap-3 px-3">
+                    <img src="./Images/saving.svg" alt="" style="width: 10%;margin-bottom: 15px">
+                    <div>
+                      <p class="mb-0" href="#" style="color: #082552; font-weight: 700;font-size: 17px;">Stocks</p>
+                      <p style="color: #6c82a3; font-size: 14px;">Own a slice of tope Nigeria's companies</p>
+                    </div>
+                  </a>
+                </div>
+                <div class="py-3 px-3">
+                  <!-- <li><hr class="dropdown-divider"></li> -->
+                  <li style="margin-left: 15px; font-weight: 500; font-size: 17px;">Growth Tools</li>
+                  <li><a class="dropdown-item" href="#" style="color: #6c82a3;">Estimate your intrests</a></li>
+                  <li><a class="dropdown-item" href="#" style=" color: #6c82a3;">Know your risk appetite</a></li>
+                  <li><a class="dropdown-item" href="#" style="color: #6c82a3;">Plan your child's education</a></li>
+                </div>
+              </div>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Business
+            </a>
+            <ul class="dropdown-menu drome2 px-4 py-0 mt-3 shadow-lg">
+              <div class="d-flex">
+                <a class="d-flex align-items-center text-decoration-none gap-3 px-3">
+                  <img src="./Images/Sprout.svg" alt="" style="width: 10%;">
+                  <div>
+                    <p class="mb-0" href="#"
+                      style="padding-top: 20px; color: #082552; font-weight: 700;font-size: 17px;">Sprout</p>
+                    <p style="color: #6c82a3; font-size: 14px;">Put your business ideal cash to work</p>
+                  </div>
+                </a>
+              </div>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Developer
+            </a>
+            <ul class="dropdown-menu drome3 px-4 py-0 mt-3 shadow-lg">
+              <div class="d-flex">
+                <div class="border border-start-0 border-top-0 border-bottom-0">
+                  <a class="d-flex align-items-center text-decoration-none gap-3 px-3">
+                    <img src="./Images/Embeded.svg" alt="" style="width: 10%;">
+                    <div>
+                      <p class="mb-0" href="#"
+                        style="padding-top: 20px; color: #082552; font-weight: 700;font-size: 17px;">Embed</p>
+                      <p style="color: #6c82a3; font-size: 14px;">Offer investment services in your app</p>
+                    </div>
+                  </a>
+                  <a class="d-flex align-items-center text-decoration-none gap-3 px-3">
+                    <img src="./Images/Docs.svg " alt="" style="width: 10%;margin-bottom: 15px">
+                    <div>
+                      <p class="mb-0" href="#" style="color: #082552; font-weight: 700;font-size: 17px;">Docs</p>
+                      <p style="color: #6c82a3; font-size: 14px;">Read how to integrate the Embed API</p>
+                    </div>
+                  </a>
+                </div>
+                <div class="py-3 px-3">
+                  <!-- <li><hr class="dropdown-divider"></li> -->
+                  <li style="margin-left: 15px; font-weight: 500; font-size: 17px;">Connect</li>
+                  <li><a class="dropdown-item" href="#" style="color: #6c82a3;">Join Embed on Slack</a></li>
+                </div>
+              </div>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Learn
+            </a>
+            <ul class="dropdown-menu drome4 px-4 py-0 mt-3 shadow-lg">
+              <div class="d-flex">
+                <div>
+                  <a class="d-flex align-items-center text-decoration-none gap-3 px-3">
+                    <img src="./Images/saving.svg" alt="" style="width: 10%;">
+                    <div>
+                      <p class="mb-0" href="#"
+                        style="padding-top: 20px; color: #082552; font-weight: 700;font-size: 17px;">Glossary</p>
+                      <p style="color: #6c82a3; font-size: 14px;">Learn from curationof simple money terms</p>
+                    </div>
+                  </a>
+                  <a class="d-flex align-items-center text-decoration-none gap-3 px-3">
+                    <img src="./Images/saving.svg" alt="" style="width: 10%;margin-bottom: 15px">
+                    <div>
+                      <p class="mb-0" href="#" style="color: #082552; font-weight: 700;font-size: 17px;">Blog</p>
+                      <p style="color: #6c82a3; font-size: 14px;">Announcements, articles and stories</p>
+                    </div>
+                  </a>
+                  <a class="d-flex align-items-center text-decoration-none gap-3 px-3">
+                    <img src="./Images/saving.svg" alt="" style="width: 10%;margin-bottom: 15px">
+                    <div>
+                      <p class="mb-0" href="#" style="color: #082552; font-weight: 700;font-size: 17px;">Help Center</p>
+                      <p style="color: #6c82a3; font-size: 14px;">Everything you need to use Cowrywise</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </ul>
+          </li>
+        </ul>
+        <div class="d-flex gap-2 flex-lg-row flex-column mt-2 mt-lg-0" role="search">
+          <a href="login.html" class="login text-decoration-none">Log in</a>
+          <button class="btn-signin"><a href="signin.html" style="color: #fff; text-decoration: none;"> Sign up for free</a></button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="cowry-bg" style="margin-bottom: 100px;">
+    <div class="hero-element">
+      <!-- <img src="./Images/cowry bg.jfif" alt="" class="cowry-bg" style="width: 100%; padding-top: 10px;"> -->
+      <h1 class="Main-text">Watch your money do more</h1>
+      <p class="Sub-text">One app. All your savings and investment needs. Trusted by individuals, HNIs, and corporates.
+      </p>
+      <button class="btn-startup ">Start Building Wealth</button>
+    </div>
+  </div>
+
+  <section style="padding-top: 20px; margin-top: 50px; padding: 40px 80px;">
+    <div class="section1" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 100px;">
+      <div>
+        <h1 style="width: 550px; font-size: 60px; font-weight: 400;">How would you like to grow?</h1>
+      </div>
+      <div>
+        <p style="width: 450px; font-size: 17px;">All your wealth-building tools, finally in one app. Save automatically
+          for the things you care about and grow your wealth the smart way.</p>
+      </div>
+      <div>
+        <button class="btn-signin" style="width: 150px; margin-bottom: 60px;">Start now</button>
+      </div>
+    </div>
+
+    <div class="section2" style="margin-top: 50px;display: flex; justify-content: space-between; margin-bottom: 50px;">
+      <div class="grid1"
+        style="display: flex; justify-content: space-between; flex-direction: column; padding-bottom: 20px;">
+        <h1 style="font-size: 20px; padding: 20px;">Savings</h1>
+        <div class="grid2" style="display: flex; padding-bottom: 10px;">
+          <img src="./Images/savings arrow.svg" alt="" style="width: 50px; margin-top: 20px; margin-left: 15px; ">
+          <p
+            style="margin-top: 28px; margin-left: 10px; font-size: 16px; width: 300px; line-height: 20px; color: #7f82a3;">
+            Automate savings for your important goals, from simple milestones to big dreams and earn steady returns.</p>
+        </div>
+      </div>
+
+      <div class="grid-fund"
+        style="display: flex; justify-content: space-between; flex-direction: column; padding-bottom: 20px;">
+        <h1 style="font-size: 20px; padding: 20px;">Mutual Funds</h1>
+        <div class="grid2" style="display: flex; padding-bottom: 10px;">
+          <img src="./Images/arrow funds.svg" alt="" style="width: 50px; margin-top: 20px; margin-left: 15px; ">
+          <p
+            style="margin-top: 28px; margin-left: 10px; font-size: 16px; width: 300px; line-height: 20px; color: #7f82a3;">
+            Smart returns without guesswork. Our mutual funds handle it, letting you focus on your goals.</p>
+        </div>
+      </div>
+      <div class="grid-stock"
+        style="display: flex; justify-content: space-between; flex-direction: column; padding-bottom: 20px;">
+        <h1 style="font-size: 20px; padding: 20px;">Stocks</h1>
+        <div class="grid2" style="display: flex;">
+          <img src="./Images/arrow stocks.svg" alt="" style="width: 50px; margin-top: 20px; margin-left: 15px; ">
+          <p
+            style="margin-top: 28px; margin-left: 10px; font-size: 16px; width: 300px; line-height: 20px; color: #7f82a3;">
+            Co-own Nigeria's top companies, from market leaders to newcomers and grow with them. </p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="section3"
+      style="display: flex; justify-content: space-between; align-items: center; padding-top: 50px; padding-bottom: 100px;">
+      <div>
+        <h1 style="width: 550px; font-size: 60px; font-weight: 400;">Built on trust.
+          Backed by results.</h1>
+      </div>
+      <div>
+        <p style="width: 450px; font-size: 17px;">We handle money the way it should be, <span
+            style="font-weight: bold;">responsibly</span>. We're regulated by the SEC and built for transparency. No
+          hidden tricks, no risky plays, just access to assets designed to grow your wealth the right way.</p>
+      </div>
+      <div>
+        <button class="btn-signin" style="width: 160px; margin-bottom: 60px;">Start investing</button>
+      </div>
+    </div>
+
+
+    <div class="section4" style="display: flex; justify-content: space-between; margin-bottom: 150px; gap: 10px;">
+      <div class="pics1">
+      </div>
+
+      <div class="group-middle">
+        <div class="first" style="display: flex; flex-direction: column;">
+          <h1 style="padding: 30px 35px; font-size: 28px; font-weight: 500; width: 340px; color: #3d5e82;">
+            Grow with clarity, <span style="color: #6c82a3;">not confusion.</span> 
+          </h1>
+            <p style="font-size: 15px;padding: 30px 35px; color:  #6c82a3; margin-top: 50px; width: 395px;">What's better than watching your money grow in real time? Tracking your investments, savings, and returns without the guesswork.</p>
+
+        </div>
+        <div class="second">
+          
+        </div>
+
+      </div>
+      
+      <div class="pics2">
+        
+      </div>
+
+    </div>
+
+      </div>
+    </div>
+    </div>
+
+    <div>
+      <h1 style="font-size: 60px; text-align: center; margin-bottom: 100px; color: #082552; font-weight: 400;">You name it, we've figured it out.</h1>
+    </div>
+  </section>
+
+    <!-- <marquee scrollamount="9" direction="left"> -->
+      <div class="marquee-wrapper">
+        <div class="marquee-content" style="display: flex; gap: 30px; align-items: center; ">
+          
+
+        <div class="moving-ads">
+          <h1 class="ads-content">"Invest my business cash</h1>
+        </div>
+
+        <div class="moving-ads">
+          <h1 class="ads-content">"Invest in mutual funds easily</h1>
+        </div>
+  
+        <div class="moving-ads">
+          <h1 class="ads-content">"Invest in stocks</h1>
+        </div>
+  
+        <div class="moving-ads">
+          <h1 class="ads-content">"Automate and build my savings</h1>
+        </div>
+  
+        <div class="moving-ads">
+          <h1 class="ads-content">"Access Naira and USD Investments</h1>
+        </div>
+
+        <div class="moving-ads">
+          <h1 class="ads-content">"Get better returns on money</h1>
+        </div>
+
+
+
+
+
+        <div class="moving-ads">
+          <h1 class="ads-content">"Invest my business cash</h1>
+        </div>
+
+        <div class="moving-ads">
+          <h1 class="ads-content">"Invest in mutual funds easily</h1>
+        </div>
+  
+        <div class="moving-ads">
+          <h1 class="ads-content">"Invest in stocks</h1>
+        </div>
+  
+        <div class="moving-ads">
+          <h1 class="ads-content">"Automate and build my savings</h1>
+        </div>
+  
+        <div class="moving-ads">
+          <h1 class="ads-content">"Access Naira and USD Investments</h1>
+        </div>
+
+        <div class="moving-ads">
+          <h1 class="ads-content">"Get better returns on money</h1>
+        </div>
+        </div>
+      <!-- </marquee> -->
+    </div>
+
+
+    <section class="blue-part" style="padding: 0px 70px 70px 70px; background-color: #004fff;">
+      <div class="section5"
+      style="display: flex; justify-content: space-between; align-items: center; padding-top: 50px; padding-bottom: 60px;">
+      <div style="margin-bottom: 20px;">
+        <h1 style="width: 550px; font-size: 70px; font-weight: 400; color: white; word-spacing: -10px; margin-top: 50px;">Time really is money</h1>
+      </div>
+      <div>
+        <p style="width: 550px; font-size: 17px; color: #8ec5ff;"> <span style="font-weight: 600; color: white;">Sometimes the best time to invest was yesterday. The next best? Today.</span> See how your money could’ve grown in hindsight and why waiting costs more than you think.</p>
+      </div>
+      <div>
+        <button class="btn-signin2" style="width: 160px; margin-bottom: 60px;">Start investing</button>
+      </div>
+    </div>
+
+    <div class="section6" style="display: flex; gap: 20px; ">
+      <div class="subsection61" style="position: relative; max-width: 400px; width: 100%; height: 230px; background-color: #0067f5; margin-bottom: 20px; border: none; border-radius: 20px;">
+        <p style="padding: 20px 25px; color: #89bfff; font-weight: 500;">if you invested <span style=" text-decoration: underline; color: white; font-weight: 400;">every month
+          <select name="" id="" style="background-color: #0067f5; border: none; color: white;"></select>
+        </span> <span style="text-decoration: underline; color: white;">3 years ago
+          <select name="" id="" style="background-color: #0067f5; border: none; color: white;"></select>
+        </span></p>
+
+
+      <div>
+      <p style="position: absolute; bottom: 10px; padding-left: 20px; font-size: 40px;color: white; font-weight: 500;">100,000</p>
+      <button style="padding: 10px 10px 10px 10px; background: none; border: 1px solid #2b7fff; border-radius: 10px; color: white; position: absolute; bottom: 35px; margin-left: 220px; font-size: 20px; ">
+        Naira
+        <select name="" id="" style="background-color: #0067f5; border: none; color: white;"></select>
+      </button>
+      <hr style="color: white; width: 180px; margin-top: 130px; margin-left: 25px;">
+      </div>
+
+      </div>
+<div class="subsection62" style="
+    display: flex; 
+    max-width: 700px; 
+    width: 100%; 
+    height: 230px; 
+    background-color: #d6ffeb; 
+    margin-bottom: 20px; 
+    border-radius: 20px; 
+    overflow: hidden;">
+
+  <div class="manny" style="flex: 1; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: space-between; 
+      padding: 20px; 
+      border-right: 1px solid rgba(0, 166, 95, 0.1);">
+    
+    <p style="margin: 0; color: #00a65f; font-weight: 500;">Today, you'd have</p>
+    <p style="margin: 0; color: #008876; font-weight: 500; font-size: clamp(24px, 4vw, 40px);">
+      <small style="font-size: 0.6em; vertical-align: middle;">₦</small>4,367,631
+    </p>
+  </div>
+
+  <div class="manny" style="
+      flex: 1; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: space-between; 
+      padding: 20px;">
+    
+    <p style="margin: 0; color: #00a65f; font-weight: 500;">..earned returns on Cowrywise</p>
+    <p style="margin: 0; color: #008876; font-weight: 500; font-size: clamp(24px, 4vw, 40px);">
+      <small style="font-size: 0.6em; vertical-align: middle;">₦</small>767,631
+    </p>
+  </div>
+
+</div>
+      
+      <div class="subsection61" style="position: relative; max-width: 300px; width: 100%;  height: 230px; background-color: #0067f5; border: none; border-radius: 20px;">
+        <p style="padding: 20px 25px; color: #89bfff; font-weight: 500;">..earned with your bank</p>
+        <p class="money" style="position: absolute; bottom: 25px; padding-left: 20px; font-size: 40px;color: #50a2ff; font-weight: 00;"  >N28,800</p>
+      </div>
+    </div>
+    
+    <p class="estim" style="font-size: 13px; padding-left: 10px; color: #89bfff;">Estimations are based on the average performance of conservative mutual funds on Cowrywise from 2019. Calculation excludes processing fees.</p>
+    </section>
+
+
+
+    <section style="padding: 150px 70px 70px 70px; background-color: white; justify-content: center;">
+      <div class="section7" style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+        <h1 style="width:600px; font-size: 60px; font-weight: 400; margin-top: 50px;">Millions of customers can't be wrong</h1>
+      </div>
+      <div>
+        <p style="width: 450px; font-size: 17px; color: #082584;">Your goals are personal. That's why over two million Nigerians trust Cowrywise to help them grow, their way.</p>
+      </div>
+      <div>
+        <!-- <button class="btn-signin" style="width: 150px; margin-bottom: 60px;">Start now</button> -->
+      </div>
+    </div>
+    </div>
+
+    </section>
+
+
+    <section class="section8" style="padding: 0px 100px; background-color: white;">
+      <div style="justify-content: center;">
+
+      <div style="display: flex; justify-content: center; gap: -100px;">
+
+        <div class="video-card video1" style="width: 300px; height: 350px; background-color: #f5f6fa; margin-bottom: 20px; border: none; border-radius: 20px; margin-top: 40px;">
+          <video autoplay muted loop playsinline class="bg-video" src="./Videos/video1.mp4
+          "></video>
+          <div class="video-overlay">
+          <p style="position: absolute; bottom: -280px; font-weight: 700; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-size: 20px; line-height: 20px;">"It impacted my finances positively."</p>
+          <span style="position: absolute; bottom: -285px;font-size: 13px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Moyosoluwa / customer since '21</span>
+          <!-- <button style="background: none; border: none;">&#9654;</button> -->
+           <div class="play-button">
+          <div class="play-triangle"></div>
+          </div>
+          </div>
+          </div>
+
+
+        <div  style="display: flex;"></div>
+        <div  class="video-card video2" style="width: 300px; height: 350px; background-color: #f5f6fa; margin-bottom: 20px; border: none; border-radius: 20px; margin-top: 80px;">
+          <video autoplay muted loop playsinline class="bg-video" src="./Videos/video2.mp4
+          "></video>
+          <div class="video-overlay">
+          <p style="position: absolute; bottom: -280px; font-weight: 700; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-size: 20px; line-height: 20px;">"Makes my money work for me"</p>
+          <span style="position: absolute; bottom: -285px;font-size: 13px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Conscience / customer since '20</span>
+          <!-- <button style="background: none; border: none;">&#9654;</button> -->
+           <div class="play-button">
+          <div class="play-triangle"></div>
+          </div>
+          </div>
+        </div>
+
+        <div style="display: flex;"></div>
+        <div class="video-card video3" style="width: 300px; height: 350px; background-color: #f5f6fa; margin-bottom: 20px; border: none; border-radius: 20px; margin-top: 20px;">
+          <video autoplay muted loop playsinline class="bg-video" src="./Videos/video3.mp4
+          "></video>
+          <div class="video-overlay">
+          <p style="position: absolute; bottom: -280px; font-weight: 700; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-size: 20px; line-height: 20px;">"Helped improve my saving habits."</p>
+          <span style="position: absolute; bottom: -285px;font-size: 13px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Funmilola / customer since '20</span>
+          <!-- <button style="background: none; border: none;">&#9654;</button> -->
+           <div class="play-button">
+          <div class="play-triangle"></div>
+          </div>
+
+          </div>
+          </div>
+
+          <div style="display: flex;"></div>
+        <div class="video-card video4" style="width: 300px; height: 350px; background-color: #f5f6fa; margin-bottom: 20px; border: none; border-radius: 20px; margin-top: 50px;">
+          <video autoplay muted loop playsinline class="bg-video" src="./Videos/video4.mp4
+          "></video>
+          <div class="video-overlay">
+          <p style="position: absolute; bottom: -280px; font-weight: 700; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-size: 20px; line-height: 20px;">"Helped me stay consistent"</p>
+          <span style="position: absolute; bottom: -285px;font-size: 13px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Oyindamola / customer since '23</span>
+          <!-- <button style="background: none; border: none;">&#9654;</button> -->
+           <div class="play-button">
+          <div class="play-triangle"></div>
+          </div>
+           
+          </div>
+          
+        </div>
+        </div>
+        
+        </div>
+
+      </div>
+
+    </section>
+
+    <section style="margin-top: 150px;">
+      <div>
+        <h1 style="font-size: 50px; text-align: center; color: #6c82a3  ; font-weight: 400;">
+          Your future won't wait.
+        </h1>
+        <p style="font-size: 70px; text-align: center; margin-bottom: 100px; color: #0067f5  ; font-weight: 400;">
+           → Start growing today
+        </p>
+      </div>
+      
+    </section>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Footer Section -->
+  <footer style="background-color: #f8f9fc; padding: 80px 70px; margin-top: 100px;">
+    <!-- Stars and Trust Section -->
+    <div style="text-align: center; margin-bottom: 50px;">
+      <div style="font-size: 30px; margin-bottom: 15px;">
+        ⭐⭐⭐⭐⭐
+      </div>
+      <p style="color: #6c82a3; font-size: 16px; margin: 0;">Trusted by millions of Nigerians like you.</p>
+    </div>
+
+    <!-- Download Buttons Section -->
+    <div style="display: flex; justify-content: center; gap: 40px; margin-bottom: 80px;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 24px;">▶</span>
+        <div>
+          <p style="font-size: 12px; color: #6c82a3; margin: 0;">Get it on</p>
+          <p style="font-size: 18px; font-weight: 600; color: #082552; margin: 0;">Play Store</p>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 24px;">🍎</span>
+        <div>
+          <p style="font-size: 12px; color: #6c82a3; margin: 0;">Download on</p>
+          <p style="font-size: 18px; font-weight: 600; color: #082552; margin: 0;">App Store</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Navigation -->
+    <div class="footer-nav" style="display: flex; justify-content: space-between; margin-bottom: 60px; gap: 60px;">
+      <!-- Company Column -->
+      <div>
+        <h4 style="color: #082552; font-weight: 600; font-size: 14px; margin-bottom: 20px;">Company</h4>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li style="margin-bottom: 12px;"><a href="#" style="color: #6c82a3; text-decoration: none; font-size: 14px;">About Us</a></li>
+          <li style="margin-bottom: 12px;"><a href="#" style="color: #6c82a3; text-decoration: none; font-size: 14px;">Press</a></li>
+          <li style="margin-bottom: 12px;"><a href="#" style="color: #6c82a3; text-decoration: none; font-size: 14px;">Careers</a></li>
+          <li style="margin-bottom: 12px;"><a href="#" style="color: #6c82a3; text-decoration: none; font-size: 14px;">Ambassadors</a></li>
+          <li style="margin-bottom: 12px;"><a href="#" style="color: #6c82a3; text-decoration: none; font-size: 14px;">Privacy</a></li>
+          <li style="margin-bottom: 12px;"><a href="#" style="color: #6c82a3; text-decoration: none; font-size: 14px;">Terms</a></li>
+        </ul>
+      </div>
+
+      <!-- Product Column -->
+      <div>
+        <h4 style="color: #082552; font-weight: 600; font-size: 14px; margin-bottom: 20px;">Product</h4>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li style="margin-bottom: 12px;"><a href="#" style="color: #6c82a3; text-decoration: none; font-size: 14px;">Savings</a></li>
+          <li style="margin-bottom: 12px;"><a href="#" style="color: #6c82a3; text-decoration: none; font-size: 14px;">Mutual funds</a></li>
+          <li style="margin-bottom: 12px;"><a href="#" style="color: #6c82a3; text-decoration: none; font-size: 14px;">Stocks</a></li>
+          <li style="margin-bottom: 12px;"><a href="#" style="color: #6c82a3; text-decoration: none; font-size: 14px;">Kids</a></li>
+          <li style="margin-bottom: 12px;"><a href="#" style="color: #6c82a3; text-decoration: none; font-size: 14px;">Embed API</a></li>
+          <li style="margin-bottom: 12px;"><a href="#" style="color: #6c82a3; text-decoration: none; font-size: 14px;">Sprout</a></li>
+          <li style="margin-bottom: 12px;"><a href="#" style="color: #6c82a3; text-decoration: none; font-size: 14px;">Halal</a></li>
+        </ul>
+      </div>
+
+      <!-- Resources Column -->
+      <div>
+        <h4 style="color: #082552; font-weight: 600; font-size: 14px; margin-bottom: 20px;">Resources</h4>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li style="margin-bottom: 12px;"><a href="#" style="color: #6c82a3; text-decoration: none; font-size: 14px;">Media</a></li>
+          <li style="margin-bottom: 12px;"><a href="#" style="color: #6c82a3; text-decoration: none; font-size: 14px;">Security</a></li>
+          <li style="margin-bottom: 12px;"><a href="#" style="color: #6c82a3; text-decoration: none; font-size: 14px;">FAQs</a></li>
+          <li style="margin-bottom: 12px;"><a href="#" style="color: #6c82a3; text-decoration: none; font-size: 14px;">IMS Policy</a></li>
+          <li style="margin-bottom: 12px;"><a href="#" style="color: #6c82a3; text-decoration: none; font-size: 14px;">Complaints</a></li>
+          <li style="margin-bottom: 12px;"><a href="#" style="color: #6c82a3; text-decoration: none; font-size: 14px;">Simplified</a></li>
+          <li style="margin-bottom: 12px;"><a href="#" style="color: #6c82a3; text-decoration: none; font-size: 14px;">Engineering</a></li>
+          <li style="margin-bottom: 12px;"><a href="#" style="color: #6c82a3; text-decoration: none; font-size: 14px;">Glossary</a></li>
+          <li style="margin-bottom: 12px;"><a href="#" style="color: #6c82a3; text-decoration: none; font-size: 14px;">Estimate interest</a></li>
+          <li style="margin-bottom: 12px;"><a href="#" style="color: #6c82a3; text-decoration: none; font-size: 14px;">Blog</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Column -->
+      <div>
+        <h4 style="color: #082552; font-weight: 600; font-size: 14px; margin-bottom: 20px;">Contact</h4>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li style="margin-bottom: 12px;"><a href="mailto:support@cowrywise.com" style="color: #6c82a3; text-decoration: none; font-size: 14px;">support@cowrywise.com</a></li>
+          <li style="margin-bottom: 12px;"><a href="tel:07000COWRYWISE" style="color: #6c82a3; text-decoration: none; font-size: 14px;">07000COWRYWISE</a></li>
+          <li style="margin-bottom: 12px;"><a href="#" style="color: #6c82a3; text-decoration: none; font-size: 14px;">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Social Media Icons -->
+    <div style="display: flex; gap: 20px; margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid #e0e0e0;">
+      <a href="#" style="color: #6c82a3; text-decoration: none; font-size: 18px;">𝕏</a>
+      <a href="#" style="color: #6c82a3; text-decoration: none; font-size: 18px;">f</a>
+      <a href="#" style="color: #6c82a3; text-decoration: none; font-size: 18px;">💬</a>
+      <a href="#" style="color: #6c82a3; text-decoration: none; font-size: 18px;">✈️</a>
+      <a href="#" style="color: #6c82a3; text-decoration: none; font-size: 18px;">📷</a>
+      <a href="#" style="color: #6c82a3; text-decoration: none; font-size: 18px;">▶</a>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="color: #6c82a3; font-size: 14px;">NG</span>
+        <p style="color: #6c82a3; font-size: 14px; margin: 0;">5C Reverend Ogunbiyi Street, Ikeja GRA, Lagos Nigeria.</p>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="width: 50px; height: 50px; background-color: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 1px solid #e0e0e0;">
+          <div style="text-align: center;">
+            <img src="./Images/sec (1).png" style="width: 100%;" alt="">
+            <p style="font-size: 8px; color: #6c82a3; margin: 0; font-weight: 600;">SEC licensed</p>
+            <p style="font-size: 9px; color: #082552; margin: 0; font-weight: 700;">  Fund Manager</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Disclaimer Section -->
+  <section style="background-color: white; padding: 60px 70px; color: #6c82a3; font-size: 14px; line-height: 1.8;">
+    <p style="margin-bottom: 20px;">
+      Cowrywise Financial Technology Limited ( Cowrywise ) is a Fund/Portfolio Manager duly licensed by the Securities and Exchange Commission (SEC) of Nigeria, with License #1940 and its sister company, CFTL Digital Services Limited, is a Digital Sub-Broker duly licensed by the SEC, with License #3005.
+    </p>
+
+    <p style="margin-bottom: 20px;">
+      Our mutual funds are managed by our fund management partners and made available to our clients through our web and mobile applications. The fund manager for each mutual fund is disclosed on every mutual fund's profile page. Any historical returns or expected returns are hypothetical in nature and may not reflect actual future performance. <a href="#" style="color: #0067f5; text-decoration: none;">View full list of available mutual funds on Cowrywise.</a>
+    </p>
+
+    <p style="margin-bottom: 20px;">
+      The content on this website does not constitute a complete description of Cowrywise's fund management services. By creating a Cowrywise account, you accept Cowrywise's <a href="#" style="color: #0067f5; text-decoration: none;">Terms of Use</a> and <a href="#" style="color: #0067f5; text-decoration: none;">Privacy Policy</a>, and by using the stocks feature on Cowrywise, you accept CFTL Digital's <a href="#" style="color: #0067f5; text-decoration: none;">Terms of Use</a> and <a href="#" style="color: #0067f5; text-decoration: none;">Privacy Policy</a>.
+    </p>
+
+    <p style="margin-bottom: 20px;">
+      Google Play and the Google Play logo are trademarks of Google LLC. Apple, the Apple logo, and iPhone are trademarks of Apple Inc. registered in the U.S.
+    </p>
+
+    <p style="margin-bottom: 0;">
+      © 2026 Cowrywise Financial Technology. All rights reserved. RC 1419869. <a href="#" style="color: #0067f5; text-decoration: none;">NDPC Audited and Compliant</a>.
+    </p>
+  </section>
+
+</body>
+
+</html>

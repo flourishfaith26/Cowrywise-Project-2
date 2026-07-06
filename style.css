@@ -1,0 +1,1327 @@
+/* Reduce gap between Need Help and Cowrywise is licensed by the SEC on mobile */
+@media (max-width: 600px) {
+    body > div > div > div[style*="display: flex; gap: 425px"] {
+        gap: 20px !important;
+        margin-top: 8px !important;
+        margin-bottom: 0 !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+    body > div > div > div[style*="display: flex; gap: 425px"] > p {
+        margin: 0 !important;
+        padding: 4px 0 0 0 !important;
+        font-size: 12px !important;
+    }
+.need-help{
+    gap: 20px !important;
+}
+}
+/* --- Force mobile responsiveness for sign-in form --- */
+@media (max-width: 480px) {
+    .the-form {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        min-width: 0 !important;
+        height: auto !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+    }
+    .the-form > div {
+        padding: 10px 2vw 0 2vw !important;
+    }
+    .the-form > div:last-child {
+        padding: 10px 2vw !important;
+    }
+    .the-form h1 {
+        font-size: 1rem !important;
+        text-align: left !important;
+        word-break: break-word;
+        margin-bottom: 10px !important;
+    }
+    .the-form p {
+        font-size: 0.95rem !important;
+        margin-bottom: 8px !important;
+    }
+    .the-form input[type="email"] {
+        font-size: 0.95rem !important;
+        padding: 10px !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+    }
+    .the-form button {
+        font-size: 0.98rem !important;
+        padding: 10px 0 !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+        margin: 0 !important;
+    }
+}
+/* --- Enhanced responsive form for sign-in page --- */
+@media (max-width: 900px) {
+    .the-form {
+        max-width: 98vw !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        height: auto !important;
+        padding: 0 !important;
+        box-shadow: 0 0 8px rgba(0,0,0,0.07);
+        border-radius: 10px !important;
+    }
+    .the-form > div {
+        padding: 30px 10px 0 10px !important;
+    }
+    .the-form > div:last-child {
+        padding: 15px 10px !important;
+    }
+    .the-form h1 {
+        font-size: 2rem !important;
+        text-align: left !important;
+        word-break: break-word;
+    }
+    .the-form input[type="email"] {
+        font-size: 1rem !important;
+        padding: 12px !important;
+    }
+    .the-form button {
+        font-size: 1rem !important;
+        padding: 12px 10px !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 600px) {
+    .the-form {
+        max-width: 100vw !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+    }
+    .the-form > div {
+        padding: 18px 4vw 0 4vw !important;
+    }
+    .the-form > div:last-child {
+        padding: 10px 4vw !important;
+    }
+    .the-form h1 {
+        font-size: 1.2rem !important;
+        text-align: left !important;
+    }
+    .the-form input[type="email"] {
+        font-size: 0.98rem !important;
+        padding: 10px !important;
+    }
+    .the-form button {
+        font-size: 0.98rem !important;
+        padding: 10px 6px !important;
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+}
+/* Responsive: Place Google/Apple logos beside text in sign-in buttons */
+@media (max-width: 768px) {
+    .the-form button {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 10px !important;
+        position: relative !important;
+        padding-left: 20px !important;
+    }
+    .the-form button img {
+        position: static !important;
+        left: unset !important;
+        margin-left: 0 !important;
+        width: 22px !important;
+        height: 22px !important;
+        display: inline-block !important;
+    }
+}
+@media (max-width: 576px) {
+    .the-form button {
+        font-size: 0.98rem !important;
+        gap: 8px !important;
+        padding-left: 10px !important;
+    }
+    .the-form button img {
+        width: 20px !important;
+        height: 20px !important;
+    }
+}
+/* Responsive: Make Cowrywise logo bigger on small screens */
+@media (max-width: 768px) {
+    body .main-stretch ~ div img[src*="Cowry logo.svg"],
+    body > div > div > img[src*="Cowry logo.svg"] {
+        width: 25% !important;
+        min-width: 120px !important;
+        max-width: 180px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    body .main-stretch ~ div img[src*="Cowry logo.svg"],
+    body > div > div > img[src*="Cowry logo.svg"] {
+        width: 40% !important;
+        min-width: 140px !important;
+        max-width: 220px !important;
+    }
+}
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Anton',sans-serif;
+}
+
+/* Navbar Styling */
+.navbar {
+    padding: 1rem 0;
+}
+
+
+.navbar-brand img {
+    max-width: 100%;
+    height: auto;
+}
+
+.nav-link{
+    color: #6c82a3;
+    font-size: 19px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #0067f5;
+}
+
+.login{
+    text-decoration: none;
+    font-size: 19px;
+    font-weight: 500;
+    padding: 0px 20px;
+    margin-top: 15px;
+    color: #6c82a3;
+    transition: color 0.3s ease;
+}
+
+.login:hover {
+    color: #0067f5;
+}
+
+.btn-signin{
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    background-color: #0067f5;
+    font-size: 17px;
+    font-weight: 500;
+    margin-top: 7px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-signin:hover {
+    background-color: #193ca5;
+    color: white;
+}
+
+.btn-signin2{
+    border: none;
+    padding: 10px 20px;
+    color: black;
+    background-color: white;
+    font-size: 17px;
+    font-weight: 500;
+    margin-top: 7px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-signin2:hover {
+    background-color: black;
+    color: white;
+}
+
+
+/* Dropdown Menus - Responsive */
+.dropdown-menu {
+    border: none;
+    border-radius: 10px;
+}
+
+.drome{
+    max-width: 700px;
+    width: 100vw;
+    height: auto;
+    border: none;
+}
+
+.drome2{
+    max-width: 500px;
+    width: 100vw;
+    height: auto;
+    border: none;
+}
+
+.drome3{
+    max-width: 600px;
+    width: 100vw;
+    height: auto;
+    border: none;
+}
+
+.drome4{
+    max-width: 400px;
+    width: 100vw;
+    height: auto;
+    border: none;
+}
+
+.flex{
+    display: flex;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 992px) {
+    .nav-link {
+        font-size: 16px;
+    }
+    
+    .navbar-nav {
+        margin-left: 0 !important;
+    }
+    
+    .dropdown-menu {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        max-width: 100% !important;
+        width: auto !important;
+    }
+    
+    .drome,
+    .drome2,
+    .drome3,
+    .drome4 {
+        max-width: none !important;
+        width: auto !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-link {
+        font-size: 15px;
+        padding: 0.5rem 0 !important;
+    }
+    
+    .login {
+        font-size: 16px;
+        padding: 0px 10px;
+        margin-top: 0.5rem;
+    }
+    
+    .btn-signin {
+        font-size: 15px;
+        padding: 8px 16px;
+        margin-top: 0.5rem;
+    }
+    
+    .d-flex[role="search"] {
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+    
+    .navbar-collapse {
+        margin-right: 0 !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .cowry-logo{
+        width: 100%;
+        max-width: 80px;
+    }
+}
+@media (max-width: 576px) {
+    .navbar-brand img {
+        max-width: 80px;
+    }
+    
+    .nav-link {
+        font-size: 14px;
+    }
+    
+    .login {
+        font-size: 14px;
+        padding: 0;
+    }
+    
+    .btn-signin {
+        font-size: 14px;
+        padding: 8px 12px;
+        width: 100%;
+    }
+    
+    .dropdown-menu {
+        position: static !important;
+        float: none !important;
+        width: 100% !important;
+    }
+    
+    .d-flex {
+        flex-wrap: wrap;
+    }
+}
+.cowry-bg{
+    background-image: url("./Images/cowry\ bg.jfif");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    width: 100%;
+    min-height: 550px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.hero-element{
+    padding: 0px 20px;
+    max-width: 800px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Main-text{
+    text-align: center;
+    font-size: clamp(2rem, 8vw, 80px);
+    font-weight: 400;
+    color: #082552;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.Sub-text{
+    text-align: center;
+    font-size: clamp(1rem, 4vw, 23px);
+    margin: 20px 0px 30px 0px;
+    color: #7187a6;
+    line-height: 1.5;
+}
+
+.btn-startup{
+    border: none;
+    padding: 12px 30px;
+    color: white;
+    background-color: #0067f5;
+    font-size: clamp(14px, 3vw, 17px);
+    font-weight: 500;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.btn-startup:hover {
+    background-color: #0050c7;
+}
+
+/* Tablet Responsive */
+@media (max-width: 768px) {
+    .cowry-bg {
+        min-height: 450px;
+        padding: 30px 15px;
+    }
+    
+    .hero-element {
+        padding: 0px 15px;
+    }
+    
+    /* Responsive section padding */
+    section[style*="padding: 40px 80px"],
+    section[style*="padding: 150px"] {
+        padding: 30px 20px !important;
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 576px) {
+    .cowry-bg {
+        min-height: 350px;
+        padding: 20px 15px;
+        background-attachment: scroll;
+    }
+    
+    .hero-element {
+        padding: 0px 15px;
+    }
+    
+    .Main-text {
+        font-size: clamp(1.5rem, 6vw, 48px);
+        margin-bottom: 15px;
+    }
+    
+    .Sub-text {
+        font-size: clamp(0.9rem, 3.5vw, 16px);
+        margin: 15px 0px 20px 0px;
+    }
+    
+    .btn-startup {
+        padding: 10px 24px;
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+/* Responsive Grid Items */
+@media (max-width: 1024px) {
+    .grid1, .grid-fund, .grid-stock {
+        width: 100%;
+        max-width: 380px;
+        margin: 0 auto 30px;
+    }
+    
+    .grid2 {
+        width: 90%;
+        max-width: 320px;
+    }
+}
+
+@media (max-width: 768px) {
+    .grid1, .grid-fund, .grid-stock {
+        width: 100%;
+        max-width: 100%;
+        height: 400px;
+    }
+    
+    .pics1 {
+        width: 100%;
+        height: 400px;
+        background-size: 70%, 40%;
+    }
+    
+    .pics2 {
+        width: 100%;
+        height: 400px;
+    }
+    
+    .group-middle {
+        width: 100%;
+    }
+    
+    .first, .second {
+        width: 100%;
+        height: 300px;
+    }
+    
+    .moving-ads {
+        min-width: 100%;
+        max-width: 400px;
+        height: 200px;
+    }
+    
+    /* .ads-content {
+} */
+
+/* Responsive styles for login.html */
+@media (max-width: 1200px) {
+    .main-stretch {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 40px;
+    }
+    .main-stretch > div:first-child {
+        margin-right: 0 !important;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .the-form {
+        width: 100% !important;
+        max-width: 500px;
+        height: auto !important;
+        min-width: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 0 !important;
+    }
+    .main-stretch {
+        padding: 0 !important;
+    }
+    .the-form {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0;
+        height: auto !important;
+        box-shadow: 0px 0px 8px rgba(0,0,0,0.08);
+        padding: 0 !important;
+    }
+    .the-form > div {
+        padding: 40px 20px 0px 20px !important;
+    }
+    .the-form > div:last-child {
+        padding: 20px 20px !important;
+    }
+    .main-stretch > div:first-child h1 {
+        font-size: 2.2rem !important;
+    }
+    .main-stretch > div:first-child p {
+        font-size: 1rem !important;
+    }
+}
+
+@media (max-width: 576px) {
+    body > div {
+        padding: 30px 10px 0px 10px !important;
+    }
+    .main-stretch {
+        gap: 20px;
+    }
+    .the-form {
+        padding: 0 !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+    }
+    .the-form > div {
+        padding: 20px 10px 0px 10px !important;
+    }
+    .the-form > div:last-child {
+        padding: 15px 10px !important;
+    }
+    .main-stretch > div:first-child h1 {
+        font-size: 1.5rem !important;
+    }
+    .main-stretch > div:first-child p {
+        font-size: 0.95rem !important;
+    }
+    .the-form input[type="email"],
+    .the-form input[type="password"] {
+        padding: 12px !important;
+        font-size: 0.95rem !important;
+    }
+    .the-form button {
+        font-size: 1rem !important;
+        padding: 10px !important;
+    }
+}
+
+    }
+
+
+@media (max-width: 576px) {
+    .grid1, .grid-fund, .grid-stock {
+        height: 350px;
+    }
+    
+    .grid2 {
+        width: 80%;
+        margin-left: 10px;
+    }
+    
+    .pics1 {
+        height: 300px;
+    }
+    
+    .pics2 {
+        height: 300px;
+    }
+    
+    .first, .second {
+        height: 250px;
+    }
+    
+    .moving-ads {
+        min-width: 100%;
+        height: 150px;
+    }
+    
+    .ads-content {
+        font-size: clamp(20px, 5vw, 40px);
+        padding: 15px;
+    }
+}
+
+.grid1{
+    background-image: url(./Images/home-product-savings.webp);
+    width: 400px;
+    height: 470px;
+    background-color: #f5f6fa;
+    margin-bottom: 50px;
+    background-size: 110%;
+    position: center;
+    background-repeat: no-repeat;
+    border: none;
+    border-radius: 30px;
+    
+}
+.grid-fund{
+    background-image: url(./Images/home-product-mutual-funds.webp);
+    width: 400px;
+    height: 470px;
+    background-color: #f5f6fa;
+    margin-bottom: 50px;
+    background-size: 110%;
+    position: center;
+    background-repeat: no-repeat;
+    border: none;
+    border-radius: 30px;
+    
+}
+.grid-stock{
+    background-image: url(./Images/home-product-stocks.webp);
+    width: 400px;
+    height: 470px;
+    background-color: #f5f6fa;
+    margin-bottom: 50px;
+    background-size: 110%;
+    position: center;
+    background-repeat: no-repeat;
+    border: none;
+    border-radius: 30px;
+    
+}
+.grid2{
+    width: 360px;
+    height: 115px;
+    background-color: #ffffff;
+    /* margin-top: 336px;    */
+    margin-left: 20px;
+    border: none;
+    border-radius: 20px;
+}
+
+.pics1{
+    background-image: url(./Images/phone\ img.webp), url(./Images/spin\ left.webp);
+    width: 550px;
+    height: 700px;
+    background-color: #f5f6fa;
+    margin-bottom: 50px;
+    background-size: 80%, 50%;
+    background-position: center -400px, left -100px bottom -100px;
+    /* position: center; */
+    background-repeat: no-repeat, no-repeat;
+    border: none;
+    border-radius: 20px;
+    
+}
+.pics2{
+    background-image: url(./Images/ballons.webp);
+    width: 400px;
+    height: 700px;
+    background-color: #f5f6fa;
+    /* margin-bottom: 50px; */
+    background-size: 110%;
+    /* position: top 100px; */
+    padding: 20px;
+    background-origin: padding-box;  /* Background starts from padding edge */
+    background-repeat: no-repeat;
+    border: none;
+    border-radius: 20px;
+    
+}
+
+.group-middle{
+    display: flex;
+    flex-direction: column;
+}
+
+.first{
+    /* background-image: url(./Images/home-product-savings.webp); */
+    width: 380px;
+    height: 340px;
+    background-color: #f5f6fa;
+    margin-bottom: 20px;
+    background-size: 110%;
+    position: center;
+    background-repeat: no-repeat;
+    border: none;
+    border-radius: 20px;
+    
+}
+.second{
+    background-image:   url(./Images/spin\ left.webp), url(./Images/pink\ girl.webp);
+    width: 380px;
+    height: 340px;
+    background-color: #f7ebff;
+    margin-bottom: 50px;
+    background-size: 60%, 120%;
+    background-position: right -100px bottom -100px, left center;
+    /* position: center; */
+    background-repeat: no-repeat, no-repeat;
+    border: none;
+    border-radius: 20px;
+
+    
+}
+
+.marquee-wrapper {
+  padding-bottom: 100px;
+  margin-bottom: 80px;
+  width: 100%;
+  overflow: hidden; /* This keeps it from overriding other divs! */
+  /* padding: 40px 0; */
+}
+
+.marquee-content {
+  display: flex;
+  gap: 30px;
+  width: max-content; /* Forces text to stay on one line */
+  animation: scroll-loop 35s linear infinite; /* This replaces "scrollamount" */
+}
+
+@keyframes scroll-loop {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* Moves the list halfway so it loops perfectly */
+}
+
+.moving-ads{
+    min-width: 550px;
+    height: 250px;
+    /* background-color: #f5f6fa; */
+    margin-bottom: 50px;
+    background-size: 110%;
+    position: center;
+    background-repeat: no-repeat;
+    border: 1px solid #e9ecf1;
+    border-radius: 30px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+    /* margin-right: 10px; */
+
+}
+.ads-content{
+    padding: 30px;
+    font-size: 55px;
+    font-weight: 600;
+    width: 530px;
+    color: #004fff;
+    /* margin-top: 30px; */
+    justify-content: left;
+}
+
+/* This applies to all video containers */
+.video-card {
+    position: relative; /* Essential for positioning the video inside */
+    width: 300px; 
+    height: 350px;
+    overflow: hidden; /* Hides video parts that spill out */
+    border-radius: 20px;
+}
+
+/* This makes the video act like a background-image: cover */
+.bg-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: 100%;
+    height: auto;
+    transform: translate(-50%, -50%); /* Centers the video */
+    object-fit: cover; /* This is the magic line that acts like background-size: cover */
+    z-index: 1;
+}
+
+.video-overlay {
+    position: relative;
+    z-index: 2;
+    color: white;
+    padding: 20px;
+}
+
+.play-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 45px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.3); /* Semi-transparent white */
+  backdrop-filter: blur(5px);           /* The subtle "glass" effect */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  cursor: pointer;
+}
+
+.play-triangle {
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 12px solid white;       /* This creates the triangle shape */
+  margin-left: 4px;                    /* Optical centering */
+}
+
+/* Responsive styles for signin.html */
+@media (max-width: 1200px) {
+  body > div > div[style*="display: flex; gap: 100px"] {
+    flex-direction: column !important;
+    gap: 40px !important;
+    align-items: center !important;
+  }
+  .the-form {
+    width: 100% !important;
+    max-width: 500px !important;
+    height: auto !important;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .the-form {
+    max-width: 100% !important;
+    width: 100% !important;
+    height: auto !important;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.08);
+    padding: 0 !important;
+  }
+  .the-form > div {
+    padding: 40px 20px 0px 20px !important;
+  }
+  .the-form > div:last-child {
+    padding: 20px 20px !important;
+  }
+  .the-form h1 {
+    font-size: 2rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  body > div {
+    padding: 30px 10px 0px 10px !important;
+  }
+  .the-form {
+    padding: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+  .the-form > div {
+    padding: 20px 10px 0px 10px !important;
+  }
+  .the-form > div:last-child {
+    padding: 15px 10px !important;
+  }
+  .the-form h1 {
+    font-size: 1.3rem !important;
+  }
+  .the-form p {
+    font-size: 0.95rem !important;
+  }
+  .the-form input[type="email"] {
+    padding: 12px !important;
+    font-size: 0.95rem !important;
+  }
+  .the-form button {
+    font-size: 1rem !important;
+    padding: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    position: relative !important;
+    padding-left: 20px !important;
+  }
+  .the-form button img {
+    position: static !important;
+    left: unset !important;
+    margin-left: 0 !important;
+    width: 22px !important;
+    height: 22px !important;
+    display: inline-block !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .the-form h1 {
+    font-size: 1.1rem !important;
+  }
+  .the-form button {
+    font-size: 0.98rem !important;
+    gap: 8px !important;
+    padding-left: 10px !important;
+  }
+  .the-form button img {
+    width: 20px !important;
+    height: 20px !important;
+  }
+}
+
+/* Enhanced responsiveness for signin form elements */
+@media (max-width: 1200px) {
+  body > div > div[style*="display: flex; flex-direction: column;"] > div[style*="display: flex; flex-direction: column;"] {
+    width: 100% !important;
+  }
+  body > div > div[style*="display: flex; gap: 425px;"] {
+    flex-direction: column !important;
+    gap: 0 !important;
+    align-items: flex-start !important;
+  }
+}
+
+@media (max-width: 900px) {
+  body > div > div > div[style*="display: flex; gap: 10px;"] {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+  body > div > div > div[style*="display: flex; gap: 10px;"] button {
+    width: 100% !important;
+    padding: 10px 15px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  body > div > div[style*="display: flex; gap: 100px;"] {
+    gap: 20px !important;
+  }
+  body > div > div > div[style*="display: flex; gap: 10px;"] {
+    width: 100% !important;
+    flex-direction: column !important;
+  }
+  body > div > div > div[style*="display: flex; gap: 10px;"] button {
+    width: 100% !important;
+    padding: 12px 10px !important;
+    font-size: 14px !important;
+  }
+  body > div > div[style*="display: flex; gap: 425px;"] > p {
+    font-size: 12px !important;
+  }
+  body > div > div[style*="display: flex; gap: 425px;"] {
+    gap: 10px !important;
+    flex-wrap: wrap !important;
+  }
+}
+
+@media (max-width: 576px) {
+  body > div > div[style*="display: flex; gap: 425px;"] {
+    flex-direction: column !important;
+    gap: 5px !important;
+  }
+  body > div > div[style*="display: flex; gap: 425px;"] > p {
+    margin: 0 !important;
+    padding: 10px 0 !important;
+    font-size: 11px !important;
+  }
+}
+/* --- Force mobile responsiveness for sign-in form --- */
+@media (max-width: 480px) {
+    .the-form2 {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        min-width: 0 !important;
+        height: auto !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+    }
+    .the-form2 > div {
+        padding: 10px 2vw 0 2vw !important;
+    }
+    .the-form2 > div:last-child {
+        padding: 10px 2vw !important;
+    }
+    .the-form2 h1 {
+        font-size: 1rem !important;
+        text-align: left !important;
+        word-break: break-word;
+        margin-bottom: 10px !important;
+    }
+    .the-form2 p {
+        font-size: 0.95rem !important;
+        margin-bottom: 8px !important;
+    }
+    .the-form2 input[type="email"] {
+        font-size: 0.95rem !important;
+        padding: 10px !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+    }
+    .the-form2 button {
+        font-size: 0.98rem !important;
+        padding: 10px 0 !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+        margin: 0 !important;
+    }
+
+    .need-help{
+        gap: 20px;
+    }
+}
+.background-image{
+    background-image: url(./Images/map\ image.svg);
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: 40%;
+}
+
+/* responsivness */
+
+@media screen and (max-width:768px) {
+    .section1{
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+    }
+    .section1 h1{
+        font-size: 33px !important;
+        width: 200px !important;
+
+    }
+    .section1 p{
+        font-size: 14px !important;
+        width: 200px !important;
+
+    }
+    .section2{
+        display: flex;
+        flex-direction: column;
+    }
+    .section2 .grid2{
+        display: flex;
+        flex-direction: column;
+        margin-left: 10px;
+        width: 260px;
+    } 
+    .section2 p{
+        margin: 0px 0px 0px 8px !important;
+        width: 240px !important;
+    }
+    .section2 img{
+        margin-top: 0 !important;
+        margin-left: 8px !important;
+    }
+    .section3{
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+    }
+    .section3 h1{
+        font-size: 33px !important;
+        width: 200px !important;
+
+    }
+    .section3 p{
+        font-size: 14px !important;
+        width: 200px !important;
+
+    }
+    .section4{
+        display: flex;
+        flex-direction: column;
+    }
+    .section4 .pics1{
+        width: 320px !important;
+        height: 370px !important;
+        background-position: center -200px, left -50px bottom -50px !important;
+
+    }
+    .section4 .pics2{
+        width: 320px !important;
+        height: 370px !important;
+        background-position: center -100px !important;
+
+    }
+    .group-middle{
+        justify-content: center;
+        padding-left: 18px;
+    }
+    .first{
+        width: 280px !important;
+        height: 310px;
+
+    }
+    .first h1{
+        width: 270px !important;
+        padding: 10px 20px !important;
+        justify-content: center;
+    }
+    .first p{
+        width: 280px !important;
+    }
+    .second{
+        width: 280px !important;
+        height: 310px;
+        background-size: 70%, 140%;
+
+    }
+    .section5{
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+    }
+    .section5 h1{
+        font-size: 33px !important;
+        word-spacing: 1px !important;
+        width: 200px !important;
+    }
+    .section5 p{
+        font-size: 14px !important;
+        /* word-spacing: 1px !important; */
+        width: 200px !important;
+    }
+    .section6{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .subsection61 div button{
+        margin-left: 180px !important;
+        position: absolute;
+        bottom: 40px !important;
+    }
+    .subsection61 div p{
+        /* margin-left: 180px !important; */
+        position: absolute;
+        /* bottom: 20px !important; */
+    }
+    .section62 .manny{
+        padding: 10px;
+    }
+    .money{
+        position: absolute !important;
+        bottom: 10px !important;
+    }
+    
+    
+    .blue-part{
+        padding: 10px 20px !important;
+    }
+
+    .section7{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .section7 h1{
+       font-size: 33px !important;
+       word-spacing: 1px !important;
+       width: 200px !important; 
+    }
+    .section7 p{
+    font-size: 14px !important;
+    /* word-spacing: 1px !important; */
+    width: 200px !important;
+    }
+    /* .section8{
+        display: flex;
+        flex-direction: column;
+    } */
+    .estim{
+        padding-top: 20px;
+    }
+    .footer-nav{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.section8 {
+    display: flex;
+    /* gap:px; */
+    padding: 40px 10px;
+    overflow-x: auto; /* Allows scrolling on mobile */
+    scroll-snap-type: x mandatory;
+    justify-content: flex-start;
+    -ms-overflow-style: none;  /* Hide scrollbar for IE/Edge */
+    scrollbar-width: none;  /* Hide scrollbar for Firefox */
+  }
+  
+  .section8::-webkit-scrollbar { display: none; } /* Hide scrollbar for Chrome/Safari */
+
+  .video-card {
+    position: relative;
+    min-width: 300px;
+    height: 400px;
+    border-radius: 25px;
+    overflow: hidden;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    background-color: #f5f6fa;
+  }
+
+  /* The Zig-Zag layout for desktop */
+  @media (min-width: 768px) {
+    .video1 { margin-top: 40px; }
+    .video2 { margin-top: 80px; }
+    .video3 { margin-top: 20px; }
+    .video4 { margin-top: 60px; }
+    .section8 { justify-content: center; overflow-x: visible; }
+  }
+
+  .bg-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .video-overlay {
+    position: absolute;
+    inset: 0; /* fills the whole card */
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 25px;
+    color: white;
+    pointer-events: none;
+  }
+
+  .video-overlay p {
+    margin: 0;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  .video-overlay span {
+    font-size: 14px;
+    opacity: 0.9;
+  }
+
+  /* Play Button Top Right */
+  .play-button-circle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+
+  .play-triangle {
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 12px solid white;
+    margin-left: 4px;
+  }
+
+  

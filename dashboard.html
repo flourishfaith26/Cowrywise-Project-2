@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cowrywise Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg-main: #06090e;
+        --bg-sidebar: #0b111e;
+        --bg-card: #121a2d;
+        --text-main: #f4f7ff;
+        --text-muted: #93a0bc;
+        --accent: #4cf0b0;
+        --accent-2: #5e7cff;
+        --border: rgba(255,255,255,0.08);
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: "DM Sans", sans-serif;
+        background: linear-gradient(135deg, #06090e 0%, #0d1424 100%);
+        color: var(--text-main);
+      }
+
+      body::-webkit-scrollbar, .main-panel::-webkit-scrollbar { width: 10px; }
+      body::-webkit-scrollbar-track, .main-panel::-webkit-scrollbar-track { background: rgba(255,255,255,0.03); }
+      body::-webkit-scrollbar-thumb, .main-panel::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, #4f5f81, #27324a);
+        border-radius: 999px;
+      }
+
+      .app-shell { min-height: 100vh; display: flex; }
+      .sidebar {
+        position: sticky; top: 0; width: 270px; min-height: 100vh; background: var(--bg-sidebar);
+        padding: 24px 18px; border-right: 1px solid var(--border);
+        display: flex; flex-direction: column; justify-content: space-between;
+      }
+      .brand { display: flex; align-items: center; gap: 12px; }
+      .brand-mark {
+        width: 44px; height: 44px; display: grid; place-items: center; border-radius: 14px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        font-weight: 700; color: #03111f;
+      }
+      .brand p, .eyebrow, .text-muted, .disclaimer, .bank-box p, .action-box p, .article-card p { color: var(--text-muted); }
+      .sidebar-nav { display: flex; flex-direction: column; gap: 6px; margin-top: 28px; }
+      .nav-link {
+        color: var(--text-main); text-decoration: none; padding: 10px 12px; border-radius: 12px;
+        transition: background-color 0.25s ease, transform 0.25s ease;
+      }
+      .nav-link:hover, .nav-link:focus-visible { background: rgba(255,255,255,0.08); transform: translateX(3px); }
+      .referral { margin-top: 10px}
+      .sidebar-nav {
+        display: flex; flex-direction: column; gap: 6px; margin-top: 28px;
+      }
+      .sidebar-nav .referral { order: 100; }
+      .sidebar-nav .nav-link {
+        transition: background-color 0.25s ease, transform 0.25s ease, color 0.25s ease;
+      }
+      body:not(:has(:target)) .nav-home,
+      body:has(#home:target) .nav-home,
+      body:has(#save:target) .nav-save,
+      body:has(#invest:target) .nav-invest,
+      body:has(#nest:target) .nav-nest,
+      body:has(#payment:target) .nav-payment,
+      body:has(#learn:target) .nav-learn,
+      body:has(#stash:target) .nav-stash {
+        background: rgba(76,240,176,0.22);
+        color: #ffffff;
+        font-weight: 600;
+      }
+      body:has(#referral:target) .nav-home,
+      body:has(#referral:target) .nav-save,
+      body:has(#referral:target) .nav-invest,
+      body:has(#referral:target) .nav-nest,
+      body:has(#referral:target) .nav-payment,
+      body:has(#referral:target) .nav-learn,
+      body:has(#referral:target) .nav-stash {
+        background: transparent;
+        color: var(--text-main);
+        font-weight: 400;
+      }
+      body:has(#home:target) .sidebar-nav .referral { order: 1; }
+      body:has(#save:target) .sidebar-nav .referral { order: 2; }
+      body:has(#invest:target) .sidebar-nav .referral { order: 3; }
+      body:has(#nest:target) .sidebar-nav .referral { order: 4; }
+      body:has(#payment:target) .sidebar-nav .referral { order: 5; }
+      body:has(#learn:target) .sidebar-nav .referral { order: 6; }
+      body:has(#stash:target) .sidebar-nav .referral { order: 7; }
+      .profile-pill { display: flex; align-items: center; gap: 10px; padding: 12px; border-radius: 16px; background: rgba(255,255,255,0.05); }
+      .avatar {
+        width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2)); font-weight: 700; color: #03111f;
+      }
+      .avatar-lg { width: 54px; height: 54px; font-size: 1.1rem; }
+      .main-panel { flex: 1; height: 100vh; overflow-y: auto; padding: 28px; background: radial-gradient(circle at top left, rgba(94,124,255,0.12), transparent 30%); }
+      .page { display: none; max-width: 1100px; margin: 0 auto 24px; }
+      body:not(:has(:target)) #home,
+      #home:target, #save:target, #invest:target, #nest:target, #payment:target, #learn:target, #stash:target { display: block; }
+
+      .card, .promo-banner, .risk-banner, .goal-card, .create-card, .invest-card, .fund-tile, .article-card, .action-box, .bank-box, .ledger-card, .modal-box {
+        background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+        transition: transform 0.25s ease, background-color 0.25s ease;
+      }
+      .card:hover, .goal-card:hover, .create-card:hover, .invest-card:hover, .fund-tile:hover, .article-card:hover, .action-box:hover, .bank-box:hover {
+        transform: translateY(-3px); background-color: #18223a;
+      }
+      .balance-card { background: linear-gradient(135deg, rgba(76,240,176,0.15), rgba(94,124,255,0.2)); }
+      .balance-value { font-size: clamp(2rem, 3vw, 2.6rem); letter-spacing: 0.18em; }
+      .icon-btn {
+        width: 42px; height: 42px; display: grid; place-items: center; border: 1px solid var(--border);
+        background: rgba(255,255,255,0.06); color: white; border-radius: 50%; cursor: pointer;
+        transition: transform 0.25s ease, background-color 0.25s ease;
+      }
+      .icon-btn:hover { transform: translateY(-2px); background: rgba(255,255,255,0.12); }
+      .icon-btn svg { width: 18px; height: 18px; }
+      .trend-line { width: 100%; height: 120px; margin-top: 16px; }
+      .trend-line path { stroke: var(--accent); stroke-width: 3; fill: none; stroke-linecap: round; }
+      .pill, .badge-empty, .default-badge, .code-pill {
+        display: inline-flex; align-items: center; justify-content: center; padding: 7px 12px; border-radius: 999px;
+        font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+      }
+      .pill { background: rgba(255,255,255,0.08); color: #d7e4ff; }
+      .badge-empty { background: rgba(255,255,255,0.1); color: #fefefe; align-self: flex-start; }
+      .default-badge { background: rgba(76,240,176,0.14); color: var(--accent); }
+      .quick-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+      .chip {
+        padding: 10px 14px; border-radius: 999px; background: rgba(255,255,255,0.07); color: white; text-decoration: none;
+        transition: transform 0.25s ease, background-color 0.25s ease;
+      }
+      .chip:hover { transform: translateY(-2px); background: rgba(255,255,255,0.12); }
+      .promo-banner { background: linear-gradient(135deg, #ff6b4a, #ff2e63); color: white; }
+      .risk-banner { display: flex; justify-content: space-between; align-items: center; padding: 18px 22px; background: linear-gradient(90deg, rgba(76,240,176,0.13), rgba(94,124,255,0.12)); }
+      .add-cash-row { display: flex; gap: 10px; align-items: center; }
+      .add-cash-row .form-control { min-width: 220px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1); color: white; }
+      .add-cash-row .form-control::placeholder { color: #ccd7f6; }
+      .grid-cards { display: grid; gap: 16px; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .create-card, .goal-card { min-height: 180px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between; }
+      .create-card { background: rgba(255,255,255,0.03); align-items: flex-start; justify-content: center; }
+      .create-icon { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,0.12); font-size: 1.25rem; margin-bottom: 10px; }
+      .goal-card svg { width: 34px; height: 34px; margin-bottom: 10px; }
+      .goal-card.teal { background: linear-gradient(135deg, #1f5f63, #3cc7aa); }
+      .goal-card.purple { background: linear-gradient(135deg, #5a2b8a, #8145d8); }
+      .goal-card.green { background: linear-gradient(135deg, #1b5e3c, #44b16a); }
+      .goal-card.red { background: linear-gradient(135deg, #7d2137, #d45b5b); }
+      .goal-card.blue { background: linear-gradient(135deg, #1e4f87, #3d7fe2); }
+      .invest-card{ padding:24px; min-height:220px; }
+      .invest-card.green { background: linear-gradient(135deg, #1f5f42, #4bc56d); }
+      .invest-card.blue { background: linear-gradient(135deg, #1d3d7a, #4f84f5); }
+      .fund-tile { min-height: 140px; padding: 20px; display: flex; flex-direction: column; justify-content: end; color: white; }
+      .tile-a { background: radial-gradient(circle at top left, #51d6a5, #0f6749 70%); }
+      .tile-b { background: radial-gradient(circle at top left, #7db8ff, #245982 70%); }
+      .tile-c { background: radial-gradient(circle at top left, #ff8e6b, #7d2d54 70%); }
+      .nest-graphic { min-height: 520px; border-radius: 30px; display: grid; place-items: center; background: linear-gradient(135deg, rgba(76,240,176,0.16), rgba(94,124,255,0.16)); }
+      .face { width: 220px; height: 220px; border-radius: 50%; background: linear-gradient(135deg, #f3d0b8, #e8b886); position: relative; box-shadow: inset 0 -15px 35px rgba(0,0,0,0.08); }
+      .face::before, .face::after { content: ''; position: absolute; width: 60px; height: 60px; border-radius: 50%; background: #0f1424; top: 78px; }
+      .face::before { left: 42px; }
+      .face::after { right: 42px; }
+      .eye { position: absolute; top: 90px; width: 10px; height: 10px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 4px #0f1424; }
+      .eye.left { left: 74px; }
+      .eye.right { right: 74px; }
+      .mouth { position: absolute; width: 54px; height: 26px; border-bottom: 6px solid #7b3f2f; border-radius: 0 0 50px 50px; left: 50%; bottom: 54px; transform: translateX(-50%); }
+      form .form-control { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: white; }
+      form .form-control::placeholder { color: #9eb0cf; }
+      .payment-row { display: flex; align-items: center; gap: 14px; }
+      .thumb-row { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 8px; }
+      .thumb-row::-webkit-scrollbar { height: 8px; }
+      .video-card { min-width: 220px; }
+      .thumb { height: 140px; border-radius: 20px; margin-bottom: 10px; display: grid; place-items: center; color: white; font-size: 1.4rem; }
+      .thumb-a { background: linear-gradient(135deg, #3d8ad9, #194d7a); }
+      .thumb-b { background: linear-gradient(135deg, #6d3fd0, #2e1f5d); }
+      .thumb-c { background: linear-gradient(135deg, #25b074, #135439); }
+      .play { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,0.18); backdrop-filter: blur(8px); }
+      .article-card { overflow: hidden; }
+      .article-cover { height: 120px; background-size: cover; background-position: center; }
+      .cover-a { background: linear-gradient(135deg, #1d4b7a, #4f8bff); }
+      .cover-b { background: linear-gradient(135deg, #2a6954, #48c68f); }
+      .cover-c { background: linear-gradient(135deg, #7a2a6b, #de5f8d); }
+      .stash-balance { font-size: clamp(2rem, 3.5vw, 3rem); }
+      .bank-box { padding: 16px; border-radius: 18px; background: rgba(255,255,255,0.05); }
+      .action-box { padding: 18px; min-height: 120px; }
+      .ledger-card { min-height: 360px; }
+      .ledger-lines { display: grid; gap: 16px; }
+      .ledger-lines div { height: 18px; border-radius: 999px; background: linear-gradient(90deg, rgba(255,255,255,0.08), rgba(94,124,255,0.18)); filter: blur(1px); }
+      .modal-layer { position: fixed; inset: 0; background: rgba(6,9,14,0.8); display: none; align-items: center; justify-content: center; padding: 24px; z-index: 1000; }
+      #referral:target { display: flex; }
+      .modal-box { position: relative; max-width: 480px; width: 100%; background: linear-gradient(135deg, rgba(18,26,45,0.98), rgba(23,34,58,0.98)); }
+      .close-btn { position: absolute; right: 16px; top: 12px; font-size: 1.6rem; color: white; text-decoration: none; }
+      .gift-icon { font-size: 3rem; margin-bottom: 12px; }
+      .social-row { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+      .social-row span { padding: 8px 12px; border-radius: 999px; background: rgba(255,255,255,0.08); }
+
+      @media (max-width: 992px) {
+        .app-shell { flex-direction: column; }
+        .sidebar { width: 100%; min-height: auto; border-right: none; border-bottom: 1px solid var(--border); position: static; }
+        .sidebar-nav { flex-direction: row; flex-wrap: wrap; }
+        .main-panel { height: auto; overflow: visible; }
+        .grid-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+      @media (max-width: 768px) {
+        .main-panel { padding: 20px; }
+        .grid-cards { grid-template-columns: 1fr; }
+        .risk-banner { flex-direction: column; align-items: flex-start; }
+        .add-cash-row { width: 100%; flex-direction: column; align-items: stretch; }
+        .add-cash-row .form-control { min-width: 0; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div>
+          <div class="brand mb-4">
+            <div class="brand-mark">C</div>
+            <div>
+              <h5 class="mb-0">Cowrywise</h5>
+              <p class="mb-0">Financial hub</p>
+            </div>
+          </div>
+          <nav class="sidebar-nav">
+            <a class="nav-link nav-home" href="#home">Home</a>
+            <a class="nav-link nav-save" href="#save">Save</a>
+            <a class="nav-link nav-invest" href="#invest">Invest</a>
+            <a class="nav-link nav-nest" href="#nest">Nest</a>
+            <a class="nav-link nav-payment" href="#payment">Payment</a>
+            <a class="nav-link nav-learn" href="#learn">Learn</a>
+            <a class="nav-link nav-stash" href="#stash">Stash</a>
+            <a class="nav-link referral" href="#referral">Referral</a>
+          </nav>
+        </div>
+
+        <div class="sidebar-footer">
+          <div class="profile-pill">
+            <div class="avatar">A</div>
+            <div>
+              <p class="mb-0 fw-semibold">Anthonia</p>
+              <small>Balanced plan</small>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <section id="home" class="page">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <p class="eyebrow mb-1">Dashboard</p>
+              <h2 class="mb-0">Hi Anthonia</h2>
+            </div>
+            <div class="d-flex gap-2">
+              <a href="#save" class="btn btn-outline-light btn-sm rounded-pill">Seed</a>
+              <button class="icon-btn" aria-label="Notifications">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M15 17H4l1-1c1-1 1-2 1-4V10a5 5 0 1 1 10 0v2c0 2 0 3 1 4l1 1H15Z" stroke="currentColor" stroke-width="1.8"/><path d="M10 19a2 2 0 0 0 3.8 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="card balance-card p-4 p-md-4">
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <p class="text-muted mb-2">Available balance</p>
+                <h1 class="balance-value">••••</h1>
+              </div>
+              <button class="icon-btn" aria-label="Toggle visibility">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/></svg>
+              </button>
+            </div>
+            <svg class="trend-line" viewBox="0 0 280 90" role="img" aria-label="Trend line">
+              <path d="M0 70 C35 62, 48 40, 74 45 S124 66, 148 52 S206 16, 236 24 S267 37, 280 18" />
+            </svg>
+            <div class="d-flex justify-content-between align-items-center mt-3">
+              <span class="pill">Return in Jul</span>
+              <span class="text-muted">+12.4%</span>
+            </div>
+          </div>
+
+          <div class="row g-3 mt-3">
+            <div class="col-12 col-lg-8">
+              <div class="card p-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h5 class="mb-0">Add cash</h5>
+                  <span class="text-muted small">Quick save</span>
+                </div>
+                <div class="quick-actions">
+                  <a class="chip" href="#save">₦ 20K</a>
+                  <a class="chip" href="#save">₦ 50K</a>
+                  <a class="chip" href="#save">$ 100</a>
+                  <a class="chip" href="#save">₦ 100K</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-4">
+              <div class="promo-banner p-4">
+                <p class="eyebrow mb-2">Salary week</p>
+                <h4 class="mb-3">Boost your balance before the weekend.</h4>
+                <a href="#save" class="btn btn-light rounded-pill px-4">Start now</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="risk-banner mt-3 p-4">
+            <div>
+              <p class="eyebrow mb-1">Risk profile</p>
+              <h5 class="mb-0">Your risk appetite is Balanced</h5>
+            </div>
+            <span class="pill">Stable growth</span>
+          </div>
+        </section>
+
+        <section id="save" class="page">
+          <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-4 gap-3">
+            <div>
+              <p class="eyebrow mb-1">Plan</p>
+              <h2 class="mb-0">SAVE</h2>
+            </div>
+            <div class="add-cash-row">
+              <input type="text" class="form-control" placeholder="Add cash" />
+              <a href="#save" class="btn btn-primary rounded-pill">Top up</a>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h4 class="mb-0">Save by myself</h4>
+              <span class="text-muted small">Flexible goals</span>
+            </div>
+            <div class="grid-cards">
+              <div class="create-card">
+                <div class="create-icon">+</div>
+                <p class="mb-1 fw-semibold">Create</p>
+                <small>New vault</small>
+              </div>
+              <article class="goal-card teal">
+                <span class="badge-empty">EMPTY</span>
+                <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5v14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                <h5>General</h5>
+                <p>Daily and monthly cash</p>
+              </article>
+              <article class="goal-card purple">
+                <span class="badge-empty">EMPTY</span>
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 4v5c0 4.4-2.9 8.4-7 9-4.1-.6-7-4.6-7-9V7l7-4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+                <h5>Emergency</h5>
+                <p>Safety-first cushion</p>
+              </article>
+              <article class="goal-card green">
+                <span class="badge-empty">EMPTY</span>
+                <svg viewBox="0 0 24 24" fill="none"><path d="M4 19h16M7 16V8m5 8V5m5 11v-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                <h5>Home</h5>
+                <p>Renovation and furnish</p>
+              </article>
+            </div>
+          </div>
+
+          <div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h4 class="mb-0">Save with others</h4>
+              <span class="text-muted small">Shared plans</span>
+            </div>
+            <div class="grid-cards">
+              <div class="create-card">
+                <div class="create-icon">+</div>
+                <p class="mb-1 fw-semibold">Create</p>
+                <small>Invite friends</small>
+              </div>
+              <article class="goal-card red">
+                <span class="badge-empty">EMPTY</span>
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 4c2.8 0 5 2.2 5 5 0 4.7-5 8.5-5 8.5S7 13.7 7 9c0-2.8 2.2-5 5-5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+                <h5>Money Duo</h5>
+                <p>For paired goals</p>
+              </article>
+              <article class="goal-card blue">
+                <span class="badge-empty">EMPTY</span>
+                <svg viewBox="0 0 24 24" fill="none"><path d="M5 8h14M7 4h10v16H7z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                <h5>Football</h5>
+                <p>Club and match day</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="invest" class="page">
+          <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-4 gap-3">
+            <div>
+              <p class="eyebrow mb-1">Grow</p>
+              <h2 class="mb-0">INVEST</h2>
+            </div>
+            <div class="add-cash-row">
+              <input type="text" class="form-control" placeholder="Add cash" />
+              <a href="#invest" class="btn btn-primary rounded-pill">Top up</a>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h4 class="mb-0">Investments</h4>
+              <span class="text-muted small">Curated picks</span>
+            </div>
+            <div class="row g-3">
+              <div class="col-12 col-lg-6">
+                <article class="invest-card green">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="pill">NG Stocks</span>
+                    <span class="badge-empty">ACTIVE</span>
+                  </div>
+                  <h3 class="mt-4">Own a slice of leading Nigerian companies.</h3>
+                  <p class="mb-0 mt-3">Market-driven access to the brands you know.</p>
+                </article>
+              </div>
+              <div class="col-12 col-lg-6">
+                <article class="invest-card blue">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="pill">Naira Funds</span>
+                    <span class="badge-empty">ACTIVE</span>
+                  </div>
+                  <h3 class="mt-4">Stable funds built for regular growth.</h3>
+                  <p class="mb-0 mt-3">Let your cash work in professionally managed baskets.</p>
+                </article>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h4 class="mb-0">More to invest in</h4>
+              <span class="text-muted small">Explore</span>
+            </div>
+            <div class="row g-3">
+              <div class="col-6 col-lg-4"><article class="fund-tile tile-a"><h5>Capital Growth</h5><p>Balanced mix</p></article></div>
+              <div class="col-6 col-lg-4"><article class="fund-tile tile-b"><h5>Income Fund</h5><p>Consistent yield</p></article></div>
+              <div class="col-6 col-lg-4"><article class="fund-tile tile-c"><h5>Global Index</h5><p>Broader reach</p></article></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="nest" class="page">
+          <div class="row g-4 align-items-center">
+            <div class="col-12 col-lg-6">
+              <div class="nest-graphic">
+                <div class="face">
+                  <div class="eye left"></div>
+                  <div class="eye right"></div>
+                  <div class="mouth"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-6">
+              <div class="card p-4 p-lg-5">
+                <p class="eyebrow mb-2">Nest</p>
+                <h2 class="mb-3">Set up your child's Nest</h2>
+                <form>
+                  <div class="mb-3">
+                    <label class="form-label">First name</label>
+                    <input type="text" class="form-control" placeholder="Ada" />
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Surname</label>
+                    <input type="text" class="form-control" placeholder="Okafor" />
+                  </div>
+                  <div class="mb-4">
+                    <label class="form-label">Date of Birth</label>
+                    <input type="date" class="form-control" />
+                  </div>
+                  <p class="disclaimer">Your data is protected and used only to personalize your Nest plan.</p>
+                  <a href="#home" class="btn btn-primary rounded-pill px-4">Continue</a>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="payment" class="page">
+          <div class="mb-4">
+            <p class="eyebrow mb-1">Accounts</p>
+            <h2 class="mb-0">My Accounts</h2>
+          </div>
+          <div class="card p-4">
+            <div class="payment-row">
+              <div class="avatar avatar-lg">Z</div>
+              <div class="flex-grow-1">
+                <div class="d-flex align-items-center gap-2 mb-1">
+                  <h5 class="mb-0">Zenith Bank Plc</h5>
+                  <span class="default-badge">DEFAULT</span>
+                </div>
+                <p class="mb-0 text-muted">Savings • 0441234567</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="learn" class="page">
+          <div class="mb-4">
+            <p class="eyebrow mb-1">Education</p>
+            <h2 class="mb-0">Start learning</h2>
+          </div>
+
+          <div class="mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h4 class="mb-0">Learn in 60 seconds</h4>
+              <span class="text-muted small">Short videos</span>
+            </div>
+            <div class="thumb-row">
+              <article class="video-card">
+                <div class="thumb thumb-a"><span class="play">▶</span></div>
+                <h6>Stock Investing 1</h6>
+              </article>
+              <article class="video-card">
+                <div class="thumb thumb-b"><span class="play">▶</span></div>
+                <h6>Stock Investing 2</h6>
+              </article>
+              <article class="video-card">
+                <div class="thumb thumb-c"><span class="play">▶</span></div>
+                <h6>Stock Investing 7</h6>
+              </article>
+            </div>
+          </div>
+
+          <div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h4 class="mb-0">Have a quick read</h4>
+              <span class="text-muted small">Articles</span>
+            </div>
+            <div class="row g-3">
+              <div class="col-12 col-md-6 col-xl-4">
+                <article class="article-card">
+                  <div class="article-cover cover-a"></div>
+                  <div class="p-3">
+                    <h6>How beginners build confidence in investing</h6>
+                    <p class="mb-0 text-muted">Jun 18 • 4 min read</p>
+                  </div>
+                </article>
+              </div>
+              <div class="col-12 col-md-6 col-xl-4">
+                <article class="article-card">
+                  <div class="article-cover cover-b"></div>
+                  <div class="p-3">
+                    <h6>The power of automatic savings</h6>
+                    <p class="mb-0 text-muted">Jun 12 • 3 min read</p>
+                  </div>
+                </article>
+              </div>
+              <div class="col-12 col-md-6 col-xl-4">
+                <article class="article-card">
+                  <div class="article-cover cover-c"></div>
+                  <div class="p-3">
+                    <h6>What risk appetite really means</h6>
+                    <p class="mb-0 text-muted">May 22 • 5 min read</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="stash" class="page">
+          <div class="mb-4">
+            <p class="eyebrow mb-1">Savings</p>
+            <h2 class="mb-0">Naira Stash</h2>
+            <h1 class="stash-balance mt-2">₦ 240,000</h1>
+          </div>
+          <div class="row g-4">
+            <div class="col-12 col-lg-5">
+              <div class="card p-4 mb-3">
+                <h5 class="mb-3">Fund via bank transfer</h5>
+                <div class="bank-box">
+                  <p class="mb-1 text-muted">Bank</p>
+                  <h6>Nombank MFB</h6>
+                  <p class="mb-1 text-muted">Account</p>
+                  <h6>1002345678</h6>
+                </div>
+              </div>
+              <div class="row g-3">
+                <div class="col-6"><div class="action-box"><h6>Fund Stash</h6><p>Move money in</p></div></div>
+                <div class="col-6"><div class="action-box"><h6>Save my money</h6><p>Automate a transfer</p></div></div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-7">
+              <div class="card ledger-card p-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h5 class="mb-0">Transactions</h5>
+                  <span class="text-muted small">Private</span>
+                </div>
+                <div class="ledger-lines">
+                  <div></div><div></div><div></div><div></div><div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="referral" class="modal-layer">
+      <div class="modal-box text-center p-4 p-lg-5">
+        <a href="#home" class="close-btn" aria-label="Close">×</a>
+        <div class="gift-icon">🎁</div>
+        <h2 class="mb-3">Get fee waivers</h2>
+        <p class="mb-4">Invite a friend and enjoy a waiver on your next transfer.</p>
+        <div class="code-pill">REF-2048</div>
+        <div class="social-row mt-4">
+          <span>WhatsApp</span>
+          <span>Twitter</span>
+          <span>Copy link</span>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+
+  </script>
+</html>
