@@ -35,13 +35,15 @@
                     <div style="padding: 70px 60px 0px 60px;">
                         <div style="display: flex; gap: 10px;">
                             <button
-                                style="background: none; border: 1px solid #e0e4eb; border-radius: 5px; padding: 8px 27px 10px 60px; position: relative;font-family: 'Anton', sans-serif; font-weight: 600; font-size: 15px; color: #0a2e65; ">Sign
+                                style="background: none; border: 1px solid #e0e4eb; border-radius: 5px; padding: 8px 27px 10px 60px; position: relative;font-family: 'Anton', sans-serif; font-weight: 600; font-size: 15px; color: #0a2e65;"
+                                id="signInWithGoogle" onclick="signInWithGoogle()">Sign
                                 in with Google <img src="./Images/Google logo.svg"
                                     style="position: absolute; left: 30px;" alt=""></button>
                             <button
-                                style="background: none; border: 1px solid #e0e4eb; border-radius: 5px; padding: 8px 27px 10px 60px; position: relative;font-family: 'Anton', sans-serif; font-weight: 600; font-size: 15px; color: #0a2e65; ">Sign
-                                in with Google <img src="./Images/Apple logo.svg"
-                                    style="position: absolute; left: 30px;" alt=""></button>
+                                style="background: none; border: 1px solid #e0e4eb; border-radius: 5px; padding: 8px 27px 10px 60px; position: relative;font-family: 'Anton', sans-serif; font-weight: 600; font-size: 15px; color: #0a2e65;"
+                                id="signInWithApple" onclick="signInWithApple()">Sign
+                                in with Apple <img src="./Images/Apple logo.svg" style="position: absolute; left: 30px;"
+                                    alt=""></button>
                         </div>
 
                         <p
@@ -49,23 +51,26 @@
                             or</p>
 
                         <div style="display: flex; flex-direction: column; gap: 30px; margin-bottom: 10px;">
-                            <input type="email"
+                            <input id="email" type="email"
                                 style="width: 100%; padding: 15px; font-family: 'Anton', sans-serif; border: 1px solid #e0e4eb; border-radius: 5px;"
                                 placeholder="Email Address">
-                            <input type="password"
+                            <input id="pass" type="password"
                                 style="width: 100%; padding: 15px; font-family: 'Anton', sans-serif; border: 1px solid #e0e4eb; border-radius: 5px;"
                                 placeholder="Password">
                         </div>
 
-                        <a href=""
+                        <div id="loginMessage" style="padding-bottom: 0px;"></div>
+
+                        <a href="" onclick="forgotPass()" id="forgot-password-link"
                             style="text-decoration: none; font-family: 'Anton', sans-serif; font-size: 13px; font-weight: 600;">Forgot
                             password?</a>
 
 
                     </div>
                     <div style="padding: 30px 60px;">
-                        <button
-                            style="width: 100%; background: #0066f5; border: none; padding: 10px; color: #fff;  font-size: 17px; font-weight: 600; font-family: 'Anton', sans-serif; border-radius: 5px;">Sign
+                        <button id="loginBtn"
+                            style="width: 100%; background: #0066f5; border: none; padding: 10px; color: #fff;  font-size: 17px; font-weight: 600; font-family: 'Anton', sans-serif; border-radius: 5px;"
+                            onclick="submitForm()">Sign
                             in </button>
                     </div>
 
@@ -74,11 +79,14 @@
                 <div style="display: flex; justify-content: space-between;">
                     <p style="padding: 20px 0px; font-family: 'Anton', sans-serif; color: #687ea1; font-size: 13px;">
                         Trouble signing in? <span
-                            style="font-weight: 600; font-family: 'Anton', sans-serif; font-size: 13px; color: #007af6;">Chat
-                            with us</span></p>
+                            style="font-weight: 600; font-family: 'Anton', sans-serif; font-size: 13px; color: #007af6;">
+                            <a href="" style="text-decoration: none;"> Chat
+                                with us</a></span></p>
                     <p
                         style="padding: 20px 0px; font-family: 'Anton', sans-serif; color: #687ea1; font-size: 12px; font-weight: 600;">
-                        Privacy | Terms</p>
+                        <a href="https://cowrywise.com/privacy" style="text-decoration: none; color: #687ea1">
+                            Privacy</a> |<a href="https://cowrywise.com/terms"
+                            style="text-decoration: none; color: #687ea1">Terms</a></p>
                 </div>
 
             </div>
@@ -88,8 +96,186 @@
 
     </div>
 </body>
-<script>
-    
+
+
+<script type="module">
+    // 1. Bring in the Firebase tools
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail, GoogleAuthProvider, OAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+    // 2. Your Firebase keys
+    const firebaseConfig = {
+        apiKey: "AIzaSyBCxDO2y_CfmMYF9f-7Pd8-G6NdtzSl4kk",
+        authDomain: "level-two-project-22fca.firebaseapp.com",
+        projectId: "level-two-project-22fca",
+        storageBucket: "level-two-project-22fca.firebasestorage.app",
+        messagingSenderId: "541715509294",
+        appId: "1:541715509294:web:c4435c791b8546e821efbf"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const googleProvider = new GoogleAuthProvider();
+    const appleProvider = new OAuthProvider('apple.com');
+
+    // 3. Grab your specific HTML elements
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('pass');
+    const messageBox = document.getElementById('loginMessage');
+
+    // We need to grab the button so we can show a loading spinner, but it doesn't have an ID yet!
+    // So we will grab it by looking for the button inside the div with padding: 30px 60px
+    const loginBtn = document.getElementById('loginBtn');
+
+    // 4. The function that runs when "Sign in" is clicked
+    window.submitForm = () => {
+        const emailText = emailInput.value.trim();
+        const passwordText = passwordInput.value;
+
+        // Check if they left anything blank
+        if (emailText === '' || passwordText === '') {
+            messageBox.innerHTML = `<p style="color:red; font-size: 12px; margin-top: 10px;">x Please enter your email and password.</p>`;
+            return; // Stop running the code
+        }
+
+        // Clear old errors and show loading state
+        messageBox.innerHTML = '';
+        loginBtn.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Signing in...`;
+        loginBtn.disabled = true;
+
+        // 5. Ask Firebase to verify the user!
+        signInWithEmailAndPassword(auth, emailText, passwordText)
+            .then((userCredential) => {
+                // Success! 
+
+                // We will quickly create a simple profile bundle for the Dashboard.
+                // We use the first part of their email as their name just in case they haven't set one up.
+                const fallbackName = emailText.split('@')[0];
+                const userProfile = {
+                    firstName: fallbackName,
+                    email: emailText
+                };
+
+                localStorage.setItem('activeUserProfile', JSON.stringify(userProfile));
+
+                // Teleport to the Dashboard!
+                window.location.href = 'dashboard.html';
+            })
+            .catch((error) => {
+                // Error! Wrong password or email doesn't exist
+
+                if (error.code === 'auth/invalid-credential') {
+                    messageBox.innerHTML = `<p style="color:red; font-size: 12px; margin-top: 10px;">x Incorrect email or password. Please try again.</p>`;
+                } else {
+                    messageBox.innerHTML = `<p style="color:red; font-size: 12px; margin-top: 10px;">x Error: ${error.message}</p>`;
+                }
+
+                // Reset the button
+                loginBtn.innerHTML = `Sign in`;
+                loginBtn.disabled = false;
+            });
+    };
+
+    // --- FORGOT PASSWORD LOGIC ---
+
+    // 1. Grab the link from the HTML
+    const forgotPasswordLink = document.getElementById('forgot-password-link');
+
+    // 2. Listen for the click
+    forgotPasswordLink.addEventListener('click', (event) => {
+        event.preventDefault(); // Stop the page from jumping
+
+        // Grab whatever email is currently typed in the box
+        const emailText = emailInput.value.trim();
+
+        // 3. Make sure they actually typed an email before clicking
+        if (emailText === '') {
+            messageBox.innerHTML = `<p style="color:red; font-size: 12px; margin-top: 10px;">x Please type your email address in the box first.</p>`;
+            return;
+        }
+
+        // Show a loading message
+        messageBox.innerHTML = `<p style="color:#007af6; font-size: 12px; margin-top: 10px;">Sending reset link...</p>`;
+
+        // 4. Tell Firebase to send the email!
+        sendPasswordResetEmail(auth, emailText)
+            .then(() => {
+                // Success!
+                messageBox.innerHTML = `<p style="color:green; font-size: 12px; margin-top: 10px;">✓ Password reset link sent! Please check your email.</p>`;
+            })
+            .catch((error) => {
+                // Uh oh, maybe the email is formatted wrong or doesn't exist
+                messageBox.innerHTML = `<p style="color:red; font-size: 12px; margin-top: 10px;">x Error: ${error.message}</p>`;
+            });
+    });
+
+
+    const signInWithGoogle = () => {
+        signInWithPopup(auth, googleProvider)
+            .then((result) => {
+                // Success! Grab their details
+                const user = result.user;
+
+                // Pack their Google name and email into our Dashboard backpack
+                const userProfile = {
+                    firstName: user.displayName.split(' ')[0], // Grabs just their first name
+                    email: user.email
+                };
+                localStorage.setItem('activeUserProfile', JSON.stringify(userProfile));
+
+                // Jump to Dashboard!
+                window.location.href = 'dashboard.html';
+            })
+            .catch((error) => {
+                alert("Google Sign-In Error: " + error.message);
+            });
+    };
+    window.signInWithGoogle = signInWithGoogle
+
+    const signInWithApple = () => {
+        // signInWithPopup(auth, appleProvider)
+        //   .then((result) => {
+        //     // Success!
+        //     const user = result.user;
+
+        //     // Apple sometimes hides the name, so we use a fallback if it's missing
+        //     const userProfile = {
+        //         firstName: user.displayName ? user.displayName.split(' ')[0] : 'Apple User',
+        //         email: user.email
+        //     };
+        //     localStorage.setItem('activeUserProfile', JSON.stringify(userProfile));
+
+        //     window.location.href = 'dashboard.html';
+        //   })
+        //   .catch((error) => {
+        //     alert("Apple Sign-In Error (Did you setup the Developer keys?): " + error.message);
+        //   });
+        alert("Apple Sign-In requires a paid Apple Developer Account to work in real life! For this portfolio project, please use Google or Email to sign in.")
+    };
+    window.signInWithApple = signInWithApple
 </script>
+
+
+
+<!-- <script>
+
+    const mail = document.getElementById('email')
+    const password = document.getAnimations('pass')
+    const submit = () => {
+        alert('hellooo')
+
+        if (mail === '') {
+            message.innerHTML = `
+            <p style = "color:red; font-size: 12px" class 'text-danger'>! Enter your Email</p>
+            `
+         }
+         else{
+            const userEmail = [mail.value]
+            console.log(userEmail);
+            const found = allUsers.find(user => user.mail === mail)
+            
+         }
+    }
+</script> -->
 
 </html>

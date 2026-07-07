@@ -17,10 +17,11 @@
     <div>
       <img src="./Images/Cowry logo.svg" style="margin-bottom: 100px;" alt="">
     </div>
-    <div style="display: flex; gap: 100px;" >
+    <div style="display: flex; gap: 100px;">
       <div style="display: flex; flex-direction: column;">
         <div style="display: flex; flex-direction: column;">
-          <div class="the-form2"
+
+          <div class="the-form2" id="signin-form"
             style="width: 700px; height: 750px; background-color: #ffffff; border: none; box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1); border-radius: 10px;">
             <div style="padding: 70px 60px 0px 60px;">
               <h1 style="text-align: left; font-size: 70px; font-weight: 600; color: #0a2e65;">Start your
@@ -34,10 +35,10 @@
 
 
               <div style="display: flex; gap: 10px;">
-                <button
+                <button onclick="signInWithGoogle()"
                   style="background: none; border: 1px solid #e0e4eb; border-radius: 5px; padding: 8px 27px 10px 60px; position: relative;font-family: 'Anton', sans-serif; font-weight: 600; font-size: 15px; color: #0a2e65; ">Sign
-                  in with Google <img src="./Images/Google logo.svg" style="position: absolute; left: 30px;"
-                    alt=""></button>
+                  in with Google <img src="./Images/Google logo.svg" style="position: absolute; left: 30px;" alt=""
+                    id="signInWithGoogle"></button>
               </div>
 
               <p
@@ -100,7 +101,104 @@
   </div>
 
 </body>
-<script>
+
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+  import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyBCxDO2y_CfmMYF9f-7Pd8-G6NdtzSl4kk",
+    authDomain: "level-two-project-22fca.firebaseapp.com",
+    projectId: "level-two-project-22fca",
+    storageBucket: "level-two-project-22fca.firebasestorage.app",
+    messagingSenderId: "541715509294",
+    appId: "1:541715509294:web:c4435c791b8546e821efbf"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
+  const signInWithGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // It worked! 
+        const user = result.user;
+        console.log("Logged in with Google as:", user.displayName);
+
+        // Send them straight to the dashboard!
+        window.location.href = "dashboard.html";
+      })
+      .catch((error) => {
+        // Something went wrong
+        console.error("Google Sign-In Error:", error.message);
+      });
+  }
+  window.signInWithGoogle = signInWithGoogle
+
+  const signinForm = document.getElementById('signin-form');
+  const emailInput = document.getElementById('email');
+
+  // const submitInfo = () => {
+
+  // const userEmail = emailInput.value;
+  // localStorage.setItem("pendingEmail", userEmail);
+  // window.location.href = "verify.html";
+
+
+  const mail = document.getElementById('email');
+  const message = document.getElementById('message');
+  const btn = document.getElementById('btn');
+  const allUsers = JSON.parse(localStorage.getItem('myUsers')) || []
+
+
+  const submitInfo = () => {
+    const emailText = mail.value.trim();
+    console.log(emailText);
+    // console.log('hallo');
+    if (emailText === '') {
+      message.innerHTML = `<p style="color:red; font-size: 12px; " class='text-danger'>x Enter your Email</p>`
+    } else {
+      message.innerHTML = '';
+      const userEmail = [emailText]
+      console.log(userEmail);
+      const found = allUsers.find(user => user.mail === emailText)
+      console.log(found);
+      if (found) {
+        alert('user already exist')
+      } else {
+        allUsers.push(userEmail)
+        localStorage.setItem('myUsers', JSON.stringify(allUsers))
+        localStorage.setItem('pendingEmail', emailText);
+        //   console.log(window.location.href)
+        btn.innerHTML = ` <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                             <span role="status" style="margin-left: 8px;">Loading...</span>
+                             `;
+        btn.disabled = true;
+
+        setTimeout(() => {
+          window.location.href = 'verify.html'
+        }, 1500);
+
+
+
+      }
+
+    }
+  }
+
+  window.submitInfo = submitInfo;
+  // }
+
+</script>
+
+<!-- <script>
   const allUsers = JSON.parse(localStorage.getItem('myUsers')) || []
   const mail = document.getElementById('email');
 
@@ -108,7 +206,7 @@
   const submitInfo = () => {
     console.log(mail.value);
     // console.log('hallo');
-    if (mail === '') {
+    if (mail == '') {
       message.innerHTML = `<p style="color:red; font-size: 12px; " class='text-danger'>x Enter your Email</p>`
     } else {
       const userEmail = [mail.value]
@@ -137,6 +235,6 @@
 
     }
   }
-</script>
+</script> -->
 
 </html>

@@ -44,26 +44,26 @@
 
                         <div style="display: flex; flex-direction: column; gap: 40px; margin-bottom: 0px;">
                             <div style="display: flex; justify-content: space-between; gap: 20px;">
-                                <input type="num"
+                                <input type="text" id="firstName"
                                     style="width: 100%; padding: 15px; font-family: 'Anton', sans-serif; border: 1px solid #e0e4eb; border-radius: 5px;"
                                     placeholder="Legal First Name">
-                                <input type="num"
+                                <input type="text" id="lastName"
                                     style="width: 100%; padding: 15px; font-family: 'Anton', sans-serif; border: 1px solid #e0e4eb; border-radius: 5px;"
                                     placeholder="Legal Last Name">
                             </div>
                             <div style="display: flex; justify-content: space-between; gap: 20px;">
-                                <input type="num"
+                                <input type="text" id="userName"
                                     style="width: 100%; padding: 15px; font-family: 'Anton', sans-serif; border: 1px solid #e0e4eb; border-radius: 5px;"
                                     placeholder="username">
-                                <input type="num"
+                                <input type="text" id="phoneNo"
                                     style="width: 100%; padding: 15px; font-family: 'Anton', sans-serif; border: 1px solid #e0e4eb; border-radius: 5px;"
                                     placeholder="Phone Number">
                             </div>
-                            <input type="num"
-                                style="width: 100%; padding: 15px; font-family: 'Anton', sans-serif; border: 1px solid #e0e4eb; border-radius: 5px; margin-bottom: 40px;"
+                            <input type="password" id="password"
+                                style="width: 100%; padding: 15px; font-family: 'Anton', sans-serif; border: 1px solid #e0e4eb; border-radius: 5px; margin-bottom: 8px;"
                                 placeholder="Password">
-
-                        </div>
+                            </div>
+                            <div id="createMessage" style="margin-bottom: 30px;"></div>
                         <div style="display: flex; flex-direction: column; gap: 15px;">
                             <p
                                 style="padding:0px 0px; font-family: 'Anton', sans-serif; color: #687ea1; font-size: 13px;">
@@ -85,14 +85,14 @@
                                 By tapping on “Create Account”, you agree to our
                                 <span
                                     style="font-weight: 600; font-family: 'Anton', sans-serif; font-size: 13px; color: #007af6;">
-                                    <a href="" style="text-decoration: none;">
+                                    <a href="https://cowrywise.com/terms" style="text-decoration: none;">
                                         Terms and Conditions
                                     </a>
                                 </span>
                                 and
                                 <span
                                     style="font-weight: 600; font-family: 'Anton', sans-serif; font-size: 13px; color: #007af6;">
-                                    <a href="" style="text-decoration: none;">
+                                    <a href="https://cowrywise.com/privacy" style="text-decoration: none;">
                                         Privacy Policy
                                     </a>
                                 </span>
@@ -102,7 +102,7 @@
                     </div>
 
                     <div style="padding: 10px 20px 0px; display: grid; justify-content: end;">
-                        <button
+                        <button id="createBtn" onclick="createAcc()"
                             style="width: 100%; background: #0066f5; border: none; padding: 10px 20px; color: #fff;  font-size: 17px; font-weight: 600; font-family: 'Anton', sans-serif; border-radius: 5px;">Create
                             account
                         </button>
@@ -150,7 +150,96 @@
 </div>
 
 </body>
-<script>
+<script type="module">
+    // 1. Bring in the Firebase tools
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
 
-</script>
+    // 2. Your keys
+    const firebaseConfig = {
+      apiKey: "AIzaSyBCxDO2y_CfmMYF9f-7Pd8-G6NdtzSl4kk",
+      authDomain: "level-two-project-22fca.firebaseapp.com",
+      projectId: "level-two-project-22fca",
+      storageBucket: "level-two-project-22fca.firebasestorage.app",
+      messagingSenderId: "541715509294",
+      appId: "1:541715509294:web:c4435c791b8546e821efbf"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // 3. Check the backpack for the email!
+    const savedEmail = localStorage.getItem('pendingEmail');
+    if (!savedEmail) {
+      // If someone tries to skip straight to this page, kick them back
+      window.location.href = 'signin.html';
+    }
+
+    // 4. Grab the HTML elements
+    const createBtn = document.getElementById('createBtn');
+    const passwordInput = document.getElementById('password');
+    const firstNameInput = document.getElementById('firstName');
+    const lastNameInput = document.getElementById('lastName'); 
+    const usernameInput = document.getElementById('userName');  
+    const phoneInput = document.getElementById('phoneNo');
+    const messageBox = document.getElementById('createMessage');
+
+    // 5. When they click Create Account...
+    const createAcc = () => {
+      const passwordText = passwordInput.value;
+      const firstNameText = firstNameInput.value.trim();
+      const lastNameText = lastNameInput.value.trim();
+      const usernameText = usernameInput.value.trim();
+      const phoneText = phoneInput.value.trim();
+
+      // Simple check to make sure they filled out the password
+      if (passwordText === '' || firstNameText === '' || lastNameText === '' || usernameText === '' || phoneText === '') {
+        messageBox.innerHTML = `<p style="color:red; font-size: 12px;">x Please fill out all required fields.</p>`;
+        return; // Stop running the code here
+      }
+
+      // Show loading spinner
+      createBtn.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Creating...`;
+      createBtn.disabled = true;
+
+      // 6. The Magic Firebase Function!
+      createUserWithEmailAndPassword(auth, savedEmail, passwordText)
+        .then((userCredential) => {
+          // It worked! Account created in Firebase.
+
+          // 8. NEW: Bundle all their profile details together!
+          const userProfile = {
+              firstName: firstNameText,
+              lastName: lastNameText,
+              username: usernameText,
+              phone: phoneText,
+              email: savedEmail
+          };
+          
+          // Let's save their first name in the backpack so the Dashboard can use it
+          localStorage.setItem('activeUserName', JSON.stringify(userProfile));
+          
+          // Clear the old pending email, we don't need it anymore
+          localStorage.removeItem('pendingEmail');
+
+          // Teleport to Dashboard!
+          window.location.href = 'dashboard.html';
+        })
+        .catch((error) => {
+          if (error.code === 'auth/email-already-in-use') {
+            
+            messageBox.innerHTML = `<p style="color:red; font-size: 12px;">x Looks like you already have an account! Please <a href="login.html" style="color: #007af6; text-decoration: none; font-weight: 600;">log in</a>.</p>`;
+            
+          } else {
+            // If it's any other error (like a weak password), show the default message
+            messageBox.innerHTML = `<p style="color:red; font-size: 12px;">x Error: ${error.message}</p>`;
+          }
+          // Reset the button so they can try again
+          createBtn.innerHTML = `Create account`;
+          createBtn.disabled = false;
+        });
+    };
+
+    window.createAcc = createAcc
+  </script>
 </html>
