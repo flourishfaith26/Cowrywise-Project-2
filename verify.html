@@ -20,7 +20,7 @@
                 <div style="display: flex; flex-direction: column">
                     <div class="the-form2" style="
                 width: 700px;
-                height: 400px;
+                height: 430px;
                 background-color: #ffffff;
                 border: none;
                 box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
@@ -217,6 +217,12 @@
 
     const verifyCode = () => {
         const enteredCode = otpInput.value.trim();
+        // NEW: Check if the box is completely empty first
+        if (enteredCode === "") {
+            verifyMessage.innerHTML = `<p style="color:red; font-size: 12px;">x Please input the 6-digit code.</p>`;
+            return; // Stop the code from running any further
+        }
+
         if (enteredCode === "000000") {
             verifyMessage.innerHTML = "";
             verifyBtn.innerHTML = `
