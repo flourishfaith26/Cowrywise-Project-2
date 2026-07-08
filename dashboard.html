@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cowrywise Dashboard</title>
@@ -782,460 +782,540 @@
       .add-cash-row .form-control {
         min-width: 0;
       }
-      
+
     }
+
+    /* <-- This is the last curly brace from the mobile settings */
+
+    /* --- BULLETPROOF CARD FIXES --- */
+    .goal-card.teal {
+      background: linear-gradient(135deg, #1f5f63, #3cc7aa) !important;
+    }
+
+    .goal-card.purple {
+      background: linear-gradient(135deg, #5a2b8a, #8145d8) !important;
+    }
+
+    .goal-card.green {
+      background: linear-gradient(135deg, #1b5e3c, #44b16a) !important;
+    }
+
+    .goal-card.red {
+      background: linear-gradient(135deg, #7d2137, #d45b5b) !important;
+    }
+
+    .goal-card.blue {
+      background: linear-gradient(135deg, #1e4f87, #3d7fe2) !important;
+    }
+
+    .invest-card.green {
+      background: linear-gradient(135deg, #1f5f42, #4bc56d) !important;
+    }
+
+    .invest-card.blue {
+      background: linear-gradient(135deg, #1d3d7a, #4f84f5) !important;
+    }
+
+    .goal-card,
+    .invest-card {
+      color: #ffffff !important;
+    }
+
+    .goal-card p,
+    .invest-card p {
+      color: rgba(255, 255, 255, 0.85) !important;
+      font-size: 0.9rem !important;
+    }
+
+    .create-card {
+      background: #ffffff !important;
+      border: 2px dashed #0066f5 !important;
+    }
+
+    .create-card p,
+    .create-card small {
+      color: #0a2e65 !important;
+    }
+
+    /* --- THE NUCLEAR INVEST CARD FIX --- */
+    .invest-card h1,
+    .invest-card h2,
+    .invest-card h3,
+    .invest-card h4,
+    .invest-card h5,
+    .invest-card h6,
+    .invest-card [class*="fs-"],
+    .invest-card [class*="display-"] {
+      font-size: 1.2rem !important;
+      line-height: 1.9 !important;
+      margin-top: 19px !important;
+      margin-bottom: 8px !important;
+      margin-bottom: 8px !important;
+      padding: 16px 10px !important;
+      white-space: normal !important;
+      height: 80px;
+    }
+
+    .invest-card p.small,
+    .invest-card p {
+      font-size: 0.9rem !important;
+      margin-bottom: 0 !important;
+      padding: 16px 10px !important;
+    }
+
+    /* ------------------------------ */
   </style>
-</head>
+  </head>
 
-<body>
-  <div class="app-shell">
-    <aside class="sidebar">
-      <div>
-        <div class="brand mb-4">
-          <div class="brand-mark">C</div>
-          <div>
-            <h5 class="mb-0">Cowrywise</h5>
-            <p class="mb-0">Financial hub</p>
-          </div>
-        </div>
-        <nav class="sidebar-nav">
-          <a class="nav-link nav-home" href="#home">Home</a>
-          <a class="nav-link nav-save" href="#save">Save</a>
-          <a class="nav-link nav-invest" href="#invest">Invest</a>
-          <a class="nav-link nav-nest" href="#nest">Nest</a>
-          <a class="nav-link nav-payment" href="#payment">Payment</a>
-          <a class="nav-link nav-learn" href="#learn">Learn</a>
-          <a class="nav-link nav-stash" href="#stash">Stash</a>
-          <a class="nav-link referral" href="#referral">Referral</a>
-        </nav>
-      </div>
-
-      <div class="sidebar-footer">
-        <div class="profile-pill">
-          <div class="avatar">A</div>
-          <div>
-            <p class="mb-0 fw-semibold">Anthonia</p>
-            <small>Balanced plan</small>
-          </div>
-        </div>
-      </div>
-    </aside>
-
-    <main class="main-panel">
-      <section id="home" class="page">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-          <div>
-            <p class="eyebrow mb-1">Dashboard</p>
-            <h2 class="mb-0">Hi Anthonia</h2>
-          </div>
-          <div class="d-flex gap-2">
-            <a href="#save" class="btn btn-outline-light btn-sm rounded-pill">Seed</a>
-            <button class="icon-btn" aria-label="Notifications">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M15 17H4l1-1c1-1 1-2 1-4V10a5 5 0 1 1 10 0v2c0 2 0 3 1 4l1 1H15Z" stroke="currentColor"
-                  stroke-width="1.8" />
-                <path d="M10 19a2 2 0 0 0 3.8 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        <div class="card balance-card p-4 p-md-4">
-          <div class="d-flex justify-content-between align-items-start">
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div>
+          <div class="brand mb-4">
+            <div class="brand-mark">C</div>
             <div>
-              <p class="text-muted mb-2">Available balance</p>
-              <h1 class="balance-value">••••</h1>
+              <h5 class="mb-0">Cowrywise</h5>
+              <p class="mb-0">Financial hub</p>
             </div>
-            <button class="icon-btn" aria-label="Toggle visibility">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z" stroke="currentColor" stroke-width="1.8" />
-                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8" />
-              </svg>
-            </button>
           </div>
-          <svg class="trend-line" viewBox="0 0 280 90" role="img" aria-label="Trend line">
-            <path d="M0 70 C35 62, 48 40, 74 45 S124 66, 148 52 S206 16, 236 24 S267 37, 280 18" />
-          </svg>
-          <div class="d-flex justify-content-between align-items-center mt-3">
-            <span class="pill">Return in Jul</span>
-            <span class="text-muted">+12.4%</span>
-          </div>
+          <nav class="sidebar-nav">
+            <a class="nav-link nav-home" href="#home">Home</a>
+            <a class="nav-link nav-save" href="#save">Save</a>
+            <a class="nav-link nav-invest" href="#invest">Invest</a>
+            <a class="nav-link nav-nest" href="#nest">Nest</a>
+            <a class="nav-link nav-payment" href="#payment">Payment</a>
+            <a class="nav-link nav-learn" href="#learn">Learn</a>
+            <a class="nav-link nav-stash" href="#stash">Stash</a>
+            <a class="nav-link referral" href="#referral">Referral</a>
+          </nav>
         </div>
 
-        <div class="row g-3 mt-3">
-          <div class="col-12 col-lg-8">
-            <div class="card p-4">
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                <h5 class="mb-0">Add cash</h5>
-                <span class="text-muted small">Quick save</span>
-              </div>
-              <div class="quick-actions">
-                <a class="chip" href="#save">₦ 20K</a>
-                <a class="chip" href="#save">₦ 50K</a>
-                <a class="chip" href="#save">$ 100</a>
-                <a class="chip" href="#save">₦ 100K</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-lg-4">
-            <div class="promo-banner p-4">
-              <p class="eyebrow mb-2">Salary week</p>
-              <h4 class="mb-3">Boost your balance before the weekend.</h4>
-              <a href="#save" class="btn btn-light rounded-pill px-4">Start now</a>
+        <div class="sidebar-footer">
+          <div class="profile-pill">
+            <div class="avatar">A</div>
+            <div>
+              <p class="mb-0 fw-semibold">Anthonia</p>
+              <small>Balanced plan</small>
             </div>
           </div>
         </div>
+      </aside>
 
-        <div class="risk-banner mt-3 p-4">
+      <main class="main-panel">
+        <section id="home" class="page">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <p class="eyebrow mb-1">Dashboard</p>
+              <h2 class="mb-0">Hi Anthonia</h2>
+            </div>
+            <div class="d-flex gap-2">
+              <a href="#save" class="btn btn-outline-light btn-sm rounded-pill">Seed</a>
+              <button class="icon-btn" aria-label="Notifications">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M15 17H4l1-1c1-1 1-2 1-4V10a5 5 0 1 1 10 0v2c0 2 0 3 1 4l1 1H15Z" stroke="currentColor"
+                    stroke-width="1.8" />
+                  <path d="M10 19a2 2 0 0 0 3.8 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="card balance-card p-4 p-md-4">
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <p class="text-muted mb-2">Available balance</p>
+                <h1 class="balance-value">••••</h1>
+              </div>
+              <button class="icon-btn" aria-label="Toggle visibility">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z" stroke="currentColor" stroke-width="1.8" />
+                  <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8" />
+                </svg>
+              </button>
+            </div>
+            <svg class="trend-line" viewBox="0 0 280 90" role="img" aria-label="Trend line">
+              <path d="M0 70 C35 62, 48 40, 74 45 S124 66, 148 52 S206 16, 236 24 S267 37, 280 18" />
+            </svg>
+            <div class="d-flex justify-content-between align-items-center mt-3">
+              <span class="pill">Return in Jul</span>
+              <span class="text-muted">+12.4%</span>
+            </div>
+          </div>
+
+          <div class="row g-3 mt-3">
+            <div class="col-12 col-lg-8">
+              <div class="card p-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h5 class="mb-0">Add cash</h5>
+                  <span class="text-muted small">Quick save</span>
+                </div>
+                <div class="quick-actions">
+                  <a class="chip" href="#save">₦ 20K</a>
+                  <a class="chip" href="#save">₦ 50K</a>
+                  <a class="chip" href="#save">$ 100</a>
+                  <a class="chip" href="#save">₦ 100K</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-4">
+              <div class="promo-banner p-4">
+                <p class="eyebrow mb-2">Salary week</p>
+                <h4 class="mb-3">Boost your balance before the weekend.</h4>
+                <a href="#save" class="btn btn-light rounded-pill px-4">Start now</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="risk-banner mt-3 p-4">
+            <div>
+              <p class="eyebrow mb-1">Risk profile</p>
+              <h5 class="mb-0">Your risk appetite is Balanced</h5>
+            </div>
+            <span class="pill">Stable growth</span>
+          </div>
+        </section>
+
+        <section id="save" class="page">
+          <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-4 gap-3">
+            <div>
+              <p class="eyebrow mb-1">Plan</p>
+              <h2 class="mb-0">SAVE</h2>
+            </div>
+            <div class="add-cash-row">
+              <input type="text" class="form-control" placeholder="Add cash" />
+              <a href="#save" class="btn btn-primary rounded-pill">Top up</a>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h4 class="mb-0">Save by myself</h4>
+              <span class="text-muted small">Flexible goals</span>
+            </div>
+            <div class="grid-cards">
+              <div class="create-card">
+                <div class="create-icon">+</div>
+                <p class="mb-1 fw-semibold">Create</p>
+                <small>New vault</small>
+              </div>
+              <article class="goal-card teal">
+                <span class="badge-empty">EMPTY</span>
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M5 12h14M12 5v14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                </svg>
+                <h5>General</h5>
+                <p>Daily and monthly cash</p>
+              </article>
+              <article class="goal-card purple">
+                <span class="badge-empty">EMPTY</span>
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 3l7 4v5c0 4.4-2.9 8.4-7 9-4.1-.6-7-4.6-7-9V7l7-4Z" stroke="currentColor"
+                    stroke-width="1.8" stroke-linejoin="round" />
+                </svg>
+                <h5>Emergency</h5>
+                <p>Safety-first cushion</p>
+              </article>
+              <article class="goal-card green">
+                <span class="badge-empty">EMPTY</span>
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 19h16M7 16V8m5 8V5m5 11v-6" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" />
+                </svg>
+                <h5>Home</h5>
+                <p>Renovation and furnish</p>
+              </article>
+            </div>
+          </div>
+
           <div>
-            <p class="eyebrow mb-1">Risk profile</p>
-            <h5 class="mb-0">Your risk appetite is Balanced</h5>
-          </div>
-          <span class="pill">Stable growth</span>
-        </div>
-      </section>
-
-      <section id="save" class="page">
-        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-4 gap-3">
-          <div>
-            <p class="eyebrow mb-1">Plan</p>
-            <h2 class="mb-0">SAVE</h2>
-          </div>
-          <div class="add-cash-row">
-            <input type="text" class="form-control" placeholder="Add cash" />
-            <a href="#save" class="btn btn-primary rounded-pill">Top up</a>
-          </div>
-        </div>
-
-        <div class="mb-4">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <h4 class="mb-0">Save by myself</h4>
-            <span class="text-muted small">Flexible goals</span>
-          </div>
-          <div class="grid-cards">
-            <div class="create-card">
-              <div class="create-icon">+</div>
-              <p class="mb-1 fw-semibold">Create</p>
-              <small>New vault</small>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h4 class="mb-0">Save with others</h4>
+              <span class="text-muted small">Shared plans</span>
             </div>
-            <article class="goal-card teal">
-              <span class="badge-empty">EMPTY</span>
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M5 12h14M12 5v14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-              </svg>
-              <h5>General</h5>
-              <p>Daily and monthly cash</p>
-            </article>
-            <article class="goal-card purple">
-              <span class="badge-empty">EMPTY</span>
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M12 3l7 4v5c0 4.4-2.9 8.4-7 9-4.1-.6-7-4.6-7-9V7l7-4Z" stroke="currentColor" stroke-width="1.8"
-                  stroke-linejoin="round" />
-              </svg>
-              <h5>Emergency</h5>
-              <p>Safety-first cushion</p>
-            </article>
-            <article class="goal-card green">
-              <span class="badge-empty">EMPTY</span>
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M4 19h16M7 16V8m5 8V5m5 11v-6" stroke="currentColor" stroke-width="1.8"
-                  stroke-linecap="round" />
-              </svg>
-              <h5>Home</h5>
-              <p>Renovation and furnish</p>
-            </article>
-          </div>
-        </div>
-
-        <div>
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <h4 class="mb-0">Save with others</h4>
-            <span class="text-muted small">Shared plans</span>
-          </div>
-          <div class="grid-cards">
-            <div class="create-card">
-              <div class="create-icon">+</div>
-              <p class="mb-1 fw-semibold">Create</p>
-              <small>Invite friends</small>
-            </div>
-            <article class="goal-card red">
-              <span class="badge-empty">EMPTY</span>
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M12 4c2.8 0 5 2.2 5 5 0 4.7-5 8.5-5 8.5S7 13.7 7 9c0-2.8 2.2-5 5-5Z" stroke="currentColor"
-                  stroke-width="1.8" stroke-linejoin="round" />
-              </svg>
-              <h5>Money Duo</h5>
-              <p>For paired goals</p>
-            </article>
-            <article class="goal-card blue">
-              <span class="badge-empty">EMPTY</span>
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M5 8h14M7 4h10v16H7z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-              </svg>
-              <h5>Football</h5>
-              <p>Club and match day</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="invest" class="page">
-        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-4 gap-3">
-          <div>
-            <p class="eyebrow mb-1">Grow</p>
-            <h2 class="mb-0">INVEST</h2>
-          </div>
-          <div class="add-cash-row">
-            <input type="text" class="form-control" placeholder="Add cash" />
-            <a href="#invest" class="btn btn-primary rounded-pill">Top up</a>
-          </div>
-        </div>
-
-        <div class="mb-4">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <h4 class="mb-0">Investments</h4>
-            <span class="text-muted small">Curated picks</span>
-          </div>
-          <div class="row g-3">
-            <div class="col-12 col-lg-6">
-              <article class="invest-card green">
-                <div class="d-flex justify-content-between align-items-center">
-                  <span class="pill">NG Stocks</span>
-                  <span class="badge-empty">ACTIVE</span>
-                </div>
-                <h3 class="mt-4">Own a slice of leading Nigerian companies.</h3>
-                <p class="mb-0 mt-3">Market-driven access to the brands you know.</p>
-              </article>
-            </div>
-            <div class="col-12 col-lg-6">
-              <article class="invest-card blue">
-                <div class="d-flex justify-content-between align-items-center">
-                  <span class="pill">Naira Funds</span>
-                  <span class="badge-empty">ACTIVE</span>
-                </div>
-                <h3 class="mt-4">Stable funds built for regular growth.</h3>
-                <p class="mb-0 mt-3">Let your cash work in professionally managed baskets.</p>
-              </article>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <h4 class="mb-0">More to invest in</h4>
-            <span class="text-muted small">Explore</span>
-          </div>
-          <div class="row g-3">
-            <div class="col-6 col-lg-4">
-              <article class="fund-tile tile-a">
-                <h5>Capital Growth</h5>
-                <p>Balanced mix</p>
-              </article>
-            </div>
-            <div class="col-6 col-lg-4">
-              <article class="fund-tile tile-b">
-                <h5>Income Fund</h5>
-                <p>Consistent yield</p>
-              </article>
-            </div>
-            <div class="col-6 col-lg-4">
-              <article class="fund-tile tile-c">
-                <h5>Global Index</h5>
-                <p>Broader reach</p>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="nest" class="page">
-        <div class="row g-4 align-items-center">
-          <div class="col-12 col-lg-6">
-            <div class="nest-graphic">
-              <div class="face">
-                <div class="eye left"></div>
-                <div class="eye right"></div>
-                <div class="mouth"></div>
+            <div class="grid-cards">
+              <div class="create-card">
+                <div class="create-icon">+</div>
+                <p class="mb-1 fw-semibold">Create</p>
+                <small>Invite friends</small>
               </div>
-            </div>
-          </div>
-          <div class="col-12 col-lg-6">
-            <div class="card p-4 p-lg-5">
-              <p class="eyebrow mb-2">Nest</p>
-              <h2 class="mb-3">Set up your child's Nest</h2>
-              <form>
-                <div class="mb-3">
-                  <label class="form-label">First name</label>
-                  <input type="text" class="form-control" placeholder="Ada" />
-                </div>
-                <div class="mb-3">
-                  <label class="form-label">Surname</label>
-                  <input type="text" class="form-control" placeholder="Okafor" />
-                </div>
-                <div class="mb-4">
-                  <label class="form-label">Date of Birth</label>
-                  <input type="date" class="form-control" />
-                </div>
-                <p class="disclaimer">Your data is protected and used only to personalize your Nest plan.</p>
-                <a href="#home" class="btn btn-primary rounded-pill px-4">Continue</a>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="payment" class="page">
-        <div class="mb-4">
-          <p class="eyebrow mb-1">Accounts</p>
-          <h2 class="mb-0">My Accounts</h2>
-        </div>
-        <div class="card p-4">
-          <div class="payment-row">
-            <div class="avatar avatar-lg">Z</div>
-            <div class="flex-grow-1">
-              <div class="d-flex align-items-center gap-2 mb-1">
-                <h5 class="mb-0">Zenith Bank Plc</h5>
-                <span class="default-badge">DEFAULT</span>
-              </div>
-              <p class="mb-0 text-muted">Savings • 0441234567</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="learn" class="page">
-        <div class="mb-4">
-          <p class="eyebrow mb-1">Education</p>
-          <h2 class="mb-0">Start learning</h2>
-        </div>
-
-        <div class="mb-4">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <h4 class="mb-0">Learn in 60 seconds</h4>
-            <span class="text-muted small">Short videos</span>
-          </div>
-          <div class="thumb-row">
-            <article class="video-card">
-              <div class="thumb thumb-a"><span class="play">▶</span></div>
-              <h6>Stock Investing 1</h6>
-            </article>
-            <article class="video-card">
-              <div class="thumb thumb-b"><span class="play">▶</span></div>
-              <h6>Stock Investing 2</h6>
-            </article>
-            <article class="video-card">
-              <div class="thumb thumb-c"><span class="play">▶</span></div>
-              <h6>Stock Investing 7</h6>
-            </article>
-          </div>
-        </div>
-
-        <div>
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <h4 class="mb-0">Have a quick read</h4>
-            <span class="text-muted small">Articles</span>
-          </div>
-          <div class="row g-3">
-            <div class="col-12 col-md-6 col-xl-4">
-              <article class="article-card">
-                <div class="article-cover cover-a"></div>
-                <div class="p-3">
-                  <h6>How beginners build confidence in investing</h6>
-                  <p class="mb-0 text-muted">Jun 18 • 4 min read</p>
-                </div>
+              <article class="goal-card red">
+                <span class="badge-empty">EMPTY</span>
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 4c2.8 0 5 2.2 5 5 0 4.7-5 8.5-5 8.5S7 13.7 7 9c0-2.8 2.2-5 5-5Z" stroke="currentColor"
+                    stroke-width="1.8" stroke-linejoin="round" />
+                </svg>
+                <h5>Money Duo</h5>
+                <p>For paired goals</p>
               </article>
-            </div>
-            <div class="col-12 col-md-6 col-xl-4">
-              <article class="article-card">
-                <div class="article-cover cover-b"></div>
-                <div class="p-3">
-                  <h6>The power of automatic savings</h6>
-                  <p class="mb-0 text-muted">Jun 12 • 3 min read</p>
-                </div>
-              </article>
-            </div>
-            <div class="col-12 col-md-6 col-xl-4">
-              <article class="article-card">
-                <div class="article-cover cover-c"></div>
-                <div class="p-3">
-                  <h6>What risk appetite really means</h6>
-                  <p class="mb-0 text-muted">May 22 • 5 min read</p>
-                </div>
+              <article class="goal-card blue">
+                <span class="badge-empty">EMPTY</span>
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M5 8h14M7 4h10v16H7z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                </svg>
+                <h5>Football</h5>
+                <p>Club and match day</p>
               </article>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section id="stash" class="page">
-        <div class="mb-4">
-          <p class="eyebrow mb-1">Savings</p>
-          <h2 class="mb-0">Naira Stash</h2>
-          <h1 class="stash-balance mt-2">₦ 240,000</h1>
-        </div>
-        <div class="row g-4">
-          <div class="col-12 col-lg-5">
-            <div class="card p-4 mb-3">
-              <h5 class="mb-3">Fund via bank transfer</h5>
-              <div class="bank-box">
-                <p class="mb-1 text-muted">Bank</p>
-                <h6>Nombank MFB</h6>
-                <p class="mb-1 text-muted">Account</p>
-                <h6>1002345678</h6>
-              </div>
+        <section id="invest" class="page">
+          <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-4 gap-3">
+            <div>
+              <p class="eyebrow mb-1">Grow</p>
+              <h2 class="mb-0">INVEST</h2>
+            </div>
+            <div class="add-cash-row">
+              <input type="text" class="form-control" placeholder="Add cash" />
+              <a href="#invest" class="btn btn-primary rounded-pill">Top up</a>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h4 class="mb-0">Investments</h4>
+              <span class="text-muted small">Curated picks</span>
             </div>
             <div class="row g-3">
-              <div class="col-6">
-                <div class="action-box">
-                  <h6>Fund Stash</h6>
-                  <p>Move money in</p>
-                </div>
+              <div class="col-12 col-lg-6">
+                <article class="invest-card green">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="pill" style="margin: 20px 10px;">NG Stocks</span>
+                    <span class="badge-empty" style="margin: 20px 10px;">ACTIVE</span>
+                  </div>
+                  <h3 class="mt-4">Own a slice of leading Nigerian companies.</h3>
+                  <p class="mb-0 mt-3">Market-driven access to the brands you know.</p>
+                </article>
               </div>
-              <div class="col-6">
-                <div class="action-box">
-                  <h6>Save my money</h6>
-                  <p>Automate a transfer</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-lg-7">
-            <div class="card ledger-card p-4">
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                <h5 class="mb-0">Transactions</h5>
-                <span class="text-muted small">Private</span>
-              </div>
-              <div class="ledger-lines">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+              <div class="col-12 col-lg-6">
+                <article class="invest-card blue">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="pill" style="margin: 20px 10px;">Naira Funds</span>
+                    <span class="badge-empty" style="margin: 20px 10px;" >ACTIVE</span>
+                  </div>
+                  <h3 class="mt-4">Stable funds built for regular growth.</h3>
+                  <p class="mb-0 mt-3">Let your cash work in professionally managed baskets.</p>
+                </article>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-    </main>
-  </div>
 
-  <div id="referral" class="modal-layer">
-    <div class="modal-box text-center p-4 p-lg-5">
-      <a href="#home" class="close-btn" aria-label="Close">×</a>
-      <div class="gift-icon">🎁</div>
-      <h2 class="mb-3">Get fee waivers</h2>
-      <p class="mb-4">Invite a friend and enjoy a waiver on your next transfer.</p>
-      <div class="code-pill">REF-2048</div>
-      <div class="social-row mt-4">
-        <span>WhatsApp</span>
-        <span>Twitter</span>
-        <span>Copy link</span>
+          <div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h4 class="mb-0">More to invest in</h4>
+              <span class="text-muted small">Explore</span>
+            </div>
+            <div class="row g-3">
+              <div class="col-6 col-lg-4">
+                <article class="fund-tile tile-a">
+                  <h5>Capital Growth</h5>
+                  <p>Balanced mix</p>
+                </article>
+              </div>
+              <div class="col-6 col-lg-4">
+                <article class="fund-tile tile-b">
+                  <h5>Income Fund</h5>
+                  <p>Consistent yield</p>
+                </article>
+              </div>
+              <div class="col-6 col-lg-4">
+                <article class="fund-tile tile-c">
+                  <h5>Global Index</h5>
+                  <p>Broader reach</p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="nest" class="page">
+          <div class="row g-4 align-items-center">
+            <div class="col-12 col-lg-6">
+              <div class="nest-graphic">
+                <div class="face">
+                  <div class="eye left"></div>
+                  <div class="eye right"></div>
+                  <div class="mouth"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-6">
+              <div class="card p-4 p-lg-5">
+                <p class="eyebrow mb-2">Nest</p>
+                <h2 class="mb-3">Set up your child's Nest</h2>
+                <form>
+                  <div class="mb-3">
+                    <label class="form-label">First name</label>
+                    <input type="text" class="form-control" placeholder="Ada" />
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Surname</label>
+                    <input type="text" class="form-control" placeholder="Okafor" />
+                  </div>
+                  <div class="mb-4">
+                    <label class="form-label">Date of Birth</label>
+                    <input type="date" class="form-control" />
+                  </div>
+                  <p class="disclaimer">Your data is protected and used only to personalize your Nest plan.</p>
+                  <a href="#home" class="btn btn-primary rounded-pill px-4">Continue</a>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="payment" class="page">
+          <div class="mb-4">
+            <p class="eyebrow mb-1">Accounts</p>
+            <h2 class="mb-0">My Accounts</h2>
+          </div>
+          <div class="card p-4">
+            <div class="payment-row">
+              <div class="avatar avatar-lg">Z</div>
+              <div class="flex-grow-1">
+                <div class="d-flex align-items-center gap-2 mb-1">
+                  <h5 class="mb-0">Zenith Bank Plc</h5>
+                  <span class="default-badge">DEFAULT</span>
+                </div>
+                <p class="mb-0 text-muted">Savings • 0441234567</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="learn" class="page">
+          <div class="mb-4">
+            <p class="eyebrow mb-1">Education</p>
+            <h2 class="mb-0">Start learning</h2>
+          </div>
+
+          <div class="mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h4 class="mb-0">Learn in 60 seconds</h4>
+              <span class="text-muted small">Short videos</span>
+            </div>
+            <div class="thumb-row">
+              <article class="video-card">
+                <div class="thumb thumb-a"><span class="play">▶</span></div>
+                <h6>Stock Investing 1</h6>
+              </article>
+              <article class="video-card">
+                <div class="thumb thumb-b"><span class="play">▶</span></div>
+                <h6>Stock Investing 2</h6>
+              </article>
+              <article class="video-card">
+                <div class="thumb thumb-c"><span class="play">▶</span></div>
+                <h6>Stock Investing 7</h6>
+              </article>
+            </div>
+          </div>
+
+          <div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h4 class="mb-0">Have a quick read</h4>
+              <span class="text-muted small">Articles</span>
+            </div>
+            <div class="row g-3">
+              <div class="col-12 col-md-6 col-xl-4">
+                <article class="article-card">
+                  <div class="article-cover cover-a"></div>
+                  <div class="p-3">
+                    <h6>How beginners build confidence in investing</h6>
+                    <p class="mb-0 text-muted">Jun 18 • 4 min read</p>
+                  </div>
+                </article>
+              </div>
+              <div class="col-12 col-md-6 col-xl-4">
+                <article class="article-card">
+                  <div class="article-cover cover-b"></div>
+                  <div class="p-3">
+                    <h6>The power of automatic savings</h6>
+                    <p class="mb-0 text-muted">Jun 12 • 3 min read</p>
+                  </div>
+                </article>
+              </div>
+              <div class="col-12 col-md-6 col-xl-4">
+                <article class="article-card">
+                  <div class="article-cover cover-c"></div>
+                  <div class="p-3">
+                    <h6>What risk appetite really means</h6>
+                    <p class="mb-0 text-muted">May 22 • 5 min read</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="stash" class="page">
+          <div class="mb-4">
+            <p class="eyebrow mb-1">Savings</p>
+            <h2 class="mb-0">Naira Stash</h2>
+            <h1 class="stash-balance mt-2">₦ 240,000</h1>
+          </div>
+          <div class="row g-4">
+            <div class="col-12 col-lg-5">
+              <div class="card p-4 mb-3">
+                <h5 class="mb-3">Fund via bank transfer</h5>
+                <div class="bank-box">
+                  <p class="mb-1 text-muted">Bank</p>
+                  <h6>Nombank MFB</h6>
+                  <p class="mb-1 text-muted">Account</p>
+                  <h6>1002345678</h6>
+                </div>
+              </div>
+              <div class="row g-3">
+                <div class="col-6">
+                  <div class="action-box">
+                    <h6>Fund Stash</h6>
+                    <p>Move money in</p>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="action-box">
+                    <h6>Save my money</h6>
+                    <p>Automate a transfer</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-7">
+              <div class="card ledger-card p-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h5 class="mb-0">Transactions</h5>
+                  <span class="text-muted small">Private</span>
+                </div>
+                <div class="ledger-lines">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="referral" class="modal-layer">
+      <div class="modal-box text-center p-4 p-lg-5">
+        <a href="#home" class="close-btn" aria-label="Close">×</a>
+        <div class="gift-icon">🎁</div>
+        <h2 class="mb-3">Get fee waivers</h2>
+        <p class="mb-4">Invite a friend and enjoy a waiver on your next transfer.</p>
+        <div class="code-pill">REF-2048</div>
+        <div class="social-row mt-4">
+          <span>WhatsApp</span>
+          <span>Twitter</span>
+          <span>Copy link</span>
+        </div>
       </div>
     </div>
-  </div>
-</body>
-<script>
+  </body>
+  <script>
 
-</script>
+  </script>
 
 </html>
