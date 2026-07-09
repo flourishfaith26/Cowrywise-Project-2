@@ -104,13 +104,15 @@
 
 
 <script type="module">
-  // Import the functions you need from the SDKs you need
+  // 1. Bring in the Firebase core tools
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
-  import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+  import {
+    getAuth,
+    GoogleAuthProvider,
+    signInWithPopup
+  } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
 
-  // Your web app's Firebase configuration
+  // 2. Your project configuration keys
   const firebaseConfig = {
     apiKey: "AIzaSyBCxDO2y_CfmMYF9f-7Pd8-G6NdtzSl4kk",
     authDomain: "level-two-project-22fca.firebaseapp.com",
@@ -120,121 +122,72 @@
     appId: "1:541715509294:web:c4435c791b8546e821efbf"
   };
 
-  // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
-  const provider = new GoogleAuthProvider();
+  const googleProvider = new GoogleAuthProvider();
 
+  // ==========================================
+  // THE GOOGLE AUTHENTICATION CORE FUNCTION
+  // ==========================================
   const signInWithGoogle = () => {
-    signInWithPopup(auth, provider)
+    signInWithPopup(auth, googleProvider)
       .then((result) => {
-        // It worked! 
         const user = result.user;
-        console.log("Logged in with Google as:", user.displayName);
 
-        // Send them straight to the dashboard!
-        window.location.href = "dashboard.html";
+        const userProfile = {
+          firstName: user.displayName ? user.displayName.split(' ')[0] : 'User',
+          lastName: user.displayName ? user.displayName.split(' ').slice(1).join(' ') : '',
+          name: user.displayName || 'User',
+          username: user.email.split('@')[0],
+          phone: user.phoneNumber || '',
+          email: user.email
+        };
+
+        localStorage.setItem('activeUserProfile', JSON.stringify(userProfile));
+        localStorage.removeItem('pendingEmail');
+
+        window.location.href = 'dashboard.html';
       })
       .catch((error) => {
-        // Something went wrong
-        console.error("Google Sign-In Error:", error.message);
+        console.error("Google Auth Error:", error);
+        alert(`Google Authentication Failed: ${error.message}`);
       });
-  }
-  window.signInWithGoogle = signInWithGoogle
+  };
 
-  const signinForm = document.getElementById('signin-form');
-  const emailInput = document.getElementById('email');
-
-  // const submitInfo = () => {
-
-  // const userEmail = emailInput.value;
-  // localStorage.setItem("pendingEmail", userEmail);
-  // window.location.href = "verify.html";
-
-
-  const mail = document.getElementById('email');
-  const message = document.getElementById('message');
-  const btn = document.getElementById('btn');
-  const allUsers = JSON.parse(localStorage.getItem('myUsers')) || []
-
-
-  const submitInfo = () => {
-    const emailText = mail.value.trim();
-    console.log(emailText);
-    // console.log('hallo');
-    if (emailText === '') {
-      message.innerHTML = `<p style="color:red; font-size: 12px; " class='text-danger'>x Enter your Email</p>`
-    } else {
-      message.innerHTML = '';
-      const userEmail = [emailText]
-      console.log(userEmail);
-      const found = allUsers.find(user => user.mail === emailText)
-      console.log(found);
-      if (found) {
-        alert('user already exist')
-      } else {
-        allUsers.push(userEmail)
-        localStorage.setItem('myUsers', JSON.stringify(allUsers))
-        localStorage.setItem('pendingEmail', emailText);
-        //   console.log(window.location.href)
-        btn.innerHTML = ` <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-                             <span role="status" style="margin-left: 8px;">Loading...</span>
-                             `;
-        btn.disabled = true;
-
-        setTimeout(() => {
-          window.location.href = 'verify.html'
-        }, 1500);
-
-
-
-      }
-
-    }
-  }
-
-  window.submitInfo = submitInfo;
-  // }
-
+  window.signInWithGoogle = signInWithGoogle;
 </script>
 
-<!-- <script>
-  const allUsers = JSON.parse(localStorage.getItem('myUsers')) || []
-  const mail = document.getElementById('email');
-
-
+<script>
   const submitInfo = () => {
-    console.log(mail.value);
-    // console.log('hallo');
-    if (mail == '') {
-      message.innerHTML = `<p style="color:red; font-size: 12px; " class='text-danger'>x Enter your Email</p>`
-    } else {
-      const userEmail = [mail.value]
-      console.log(userEmail);
-      const found = allUsers.find(user => user.mail === mail)
-      console.log(found);
-      if (found) {
-        alert('user already exist')
-      } else {
-        allUsers.push(userEmail)
-        localStorage.setItem('myUsers', JSON.stringify(allUsers))
-        //   console.log(window.location.href)
-        btn.innerHTML = `</button>
-                             <button class="btn btn-#212529" type="button" disabled>
-                             <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-                             <span role="status">Loading...</span>
-                             </button>`
+    const mailInput = document.getElementById('email');
+    const messageBox = document.getElementById('message');
+    const btn = document.getElementById('btn');
 
-        setTimeout(() => {
-          window.location.href = 'verify.html'
-        }, 1500);
+    const emailValue = mailInput.value.trim();
 
-
-
-      }
-
+    // 1. Fix: Verify the actual string value instead of the DOM object node
+    if (emailValue === '') {
+      messageBox.innerHTML = `<p style="color:red; font-size: 12px;">x Please enter your Email Address</p>`;
+      return;
     }
-  }
-</script> -->
+
+    // 2. Save email into the backpack memory stream for createacc.html to catch!
+    localStorage.setItem('pendingEmail', emailValue);
+
+    // 3. Render a clean, stylized Bootstrap loading spinner inside the button
+    btn.innerHTML = `
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      <span class="ms-2">Loading...</span>
+    `;
+    btn.disabled = true;
+
+    // 4. Smoothly progress to your next pipeline step
+    setTimeout(() => {
+      window.location.href = 'createacc.html';
+    }, 1200);
+  };
+
+  window.submitInfo = submitInfo;
+</script>
 
 </html>

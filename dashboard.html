@@ -1085,7 +1085,7 @@
         <div class="d-flex justify-content-between align-items-center mb-4">
           <div>
             <p class="eyebrow mb-1">Dashboard</p>
-            <h2 class="mb-0" id="user-display-name">Hi there!</h2>
+            <h2 class="mb-0" id="main-page-greeting">Hi there!</h2>
           </div>
           <div class="d-flex gap-2">
             <a href="#save" class="btn btn-outline-light btn-sm rounded-pill">Seed</a>
@@ -1527,43 +1527,35 @@
   let stashBalance = parseInt(localStorage.getItem('savedStashBalance')) || 0;
   let isBalanceHidden = true;
 
-  window.onload = () => {
-    // 1. Personalization STATE ENGINE
+  // 1. Personalization STATE ENGINE
     const nameDisplay = document.getElementById('user-display-name');
     const avatarDisplay = document.getElementById('user-avatar');
+    const mainGreeting = document.getElementById('main-page-greeting'); // Grab the new header element!
     const storedProfile = localStorage.getItem('activeUserProfile');
 
     if (storedProfile) {
       const userProfile = JSON.parse(storedProfile);
 
       if (userProfile.name) {
-        // A user is logged in! Display their custom name
+        // A user is logged in! Update all display locations
         if (nameDisplay) nameDisplay.textContent = userProfile.name;
+        if (mainGreeting) mainGreeting.textContent = `Hi, ${userProfile.name.split(' ')[0]}!`; // Greets with just their first name!
+        
         if (avatarDisplay) {
           avatarDisplay.textContent = userProfile.name.trim().charAt(0).toUpperCase();
         }
       } else {
-        // Fallback to "User" if profile exists but name field is blank
+        // Fallback fields if blank
         if (nameDisplay) nameDisplay.textContent = "User";
+        if (mainGreeting) mainGreeting.textContent = "Hi there!";
         if (avatarDisplay) avatarDisplay.textContent = "U";
       }
     } else {
       // Nobody is logged in yet! Default to standard "User"
       if (nameDisplay) nameDisplay.textContent = "User";
+      if (mainGreeting) mainGreeting.textContent = "Hi there!";
       if (avatarDisplay) avatarDisplay.textContent = "U";
     }
-
-    // 2. Setup Ledger and Balance UI
-    renderLedger();
-    const balanceText = document.getElementById('main-balance');
-    if (balanceText && !isBalanceHidden) {
-      balanceText.textContent = formatMoney(globalBalance);
-    }
-
-    renderBankAccounts();
-    updateStashUI();
-    setupNotificationCenter();
-  };
 
   // ==========================================
   // 1. HELPER & MODAL SYSTEMS
