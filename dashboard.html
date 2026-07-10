@@ -2,6 +2,18 @@
 <html lang="en">
 
 <head>
+  <head>
+  <script>
+    (function () {
+      // The Bouncer checks if the user badge exists in local storage
+      if (!localStorage.getItem('activeUserProfile')) {
+        // If not, instantly bounce them to the login gate before the page even renders
+        window.location.replace('index.html'); 
+      }
+    })();
+  </script>
+
+  <!-- Your existing CSS stylesheets links go right below here -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cowrywise Dashboard</title>
@@ -137,30 +149,6 @@
     transition: background-color 0.25s ease, transform 0.25s ease, color 0.25s ease;
   }
 
-  /* body:not(:has(:target)) .nav-home,
-  body:has(#home:target) .nav-home,
-  body:has(#save:target) .nav-save,
-  body:has(#invest:target) .nav-invest,
-  body:has(#nest:target) .nav-nest,
-  body:has(#payment:target) .nav-payment,
-  body:has(#learn:target) .nav-learn,
-  body:has(#stash:target) .nav-stash {
-    background: rgba(76, 240, 176, 0.22);
-    color: var(--text-main);
-    font-weight: 600;
-  } */
-
-  /* body:has(#referral:target) .nav-home,
-  body:has(#referral:target) .nav-save,
-  body:has(#referral:target) .nav-invest,
-  body:has(#referral:target) .nav-nest,
-  body:has(#referral:target) .nav-payment,
-  body:has(#referral:target) .nav-learn,
-  body:has(#referral:target) .nav-stash {
-    background: transparent;
-    color: var(--text-main);
-    font-weight: 400;
-  } */
 
   .nav-link.active {
     background: rgba(76, 240, 176, 0.22);
@@ -1232,6 +1220,14 @@
           <a class="nav-link nav-stash" href="#stash">Stash</a>
           <a class="nav-link referral" href="#referral">Referral</a>
         </nav>
+
+        <!-- Add this to the bottom of your sidebar links container -->
+<a href="#" id="logout-btn" class="nav-link text-danger mt-auto">
+  <svg viewBox="0 0 24 24" fill="none" width="20" height="20" style="margin-right: 8px;">
+    <path d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <span>Log Out</span>
+</a>
       </div>
 
       <div class="sidebar-footer">
@@ -2540,6 +2536,24 @@
       }
     });
   }
+
+// ==========================================
+  // LOGOUT CONTROLLER
+  // ==========================================
+  const logoutBtn = document.getElementById('logout-btn');
+
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      // Destroy the active user session pass completely
+      localStorage.removeItem('activeUserProfile');
+      
+      // Kick them out to the login gate instantly
+      window.location.replace('index.html');
+    });
+  }
+</script>
 </script>
 
 </html>
