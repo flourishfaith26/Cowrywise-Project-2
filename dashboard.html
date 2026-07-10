@@ -1032,6 +1032,170 @@
     z-index: 99999 !important;
   }
 
+
+  /* Forces all dashboard input text to stay perfectly visible and dark */
+  .page input.form-control,
+  .page input {
+    color: #0a2e65 !important;
+    font-weight: 500 !important;
+    background-color: #ffffff !important;
+  }
+
+  /* Optional: Clean up placeholder text so it stays beautifully muted before typing */
+  .page input::placeholder {
+    color: #a0aec0 !important;
+    opacity: 1;
+  }
+
+
+
+  /* ==========================================
+   DYNAMIC EDUCATION MEDIA GRAPHICS
+   ========================================== */
+
+  /* Updated to hqdefault to ensure YouTube serves the actual cover image */
+  .thumb-a {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://img.youtube.com/vi/qXLLmGUkuWY/hqdefault.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+  }
+
+  .thumb-b {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://img.youtube.com/vi/YYZ6OMptlNY/hqdefault.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+  }
+
+  .thumb-c {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://img.youtube.com/vi/AOcmfYNuDu0/hqdefault.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+  }
+
+  /* 2. Article Cover Photo Mappings (Premium Financial Concepts) */
+  .cover-a {
+    background-image: url('https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=600&q=80') !important;
+    background-size: cover !important;
+    background-position: center !important;
+  }
+
+  .cover-b {
+    background-image: url('https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=600&q=80') !important;
+    background-size: cover !important;
+    background-position: center !important;
+  }
+
+  .cover-c {
+    background-image: url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=600&q=80') !important;
+    background-size: cover !important;
+    background-position: center !important;
+  }
+
+  /* ==========================================
+   ACTIVITY CENTER SCROLL ENGINE
+   ========================================== */
+
+/* 1. Set the main drawer container to an exact viewport height and lock standard scroll */
+#notification-drawer {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    overflow: hidden !important; /* Prevents the heading from moving */
+    padding-bottom: 20px;
+}
+
+/* 2. Target the actual transaction list to scroll independently */
+#drawer-activity-list {
+    flex-grow: 1;
+    overflow-y: auto !important; /* Unlocks the smooth vertical scroll track */
+    padding-right: 4px;          /* Prevents the scrollbar from clipping text entries */
+    
+    /* Clean custom scrollbar formatting for a premium Cowrywise feel */
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+}
+
+/* Scrollbar layout tweaks for modern Webkit browsers (Chrome, Edge, Safari) */
+#drawer-activity-list::-webkit-scrollbar {
+    width: 5px;
+}
+#drawer-activity-list::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 10px;
+}
+#drawer-activity-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+/* ==========================================
+   BALANCE BAR CHART UI STYLES
+   ========================================== */
+.balance-chart-zone {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    height: 70px; /* Perfectly fills the vertical space of the old trend line */
+    padding: 0 5px;
+    gap: 12px;
+}
+
+.bar-track {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 100%;
+    flex-grow: 1;
+}
+
+.bar-column {
+    width: 100%;
+    height: var(--bar-height, 15%);
+    border-radius: 3px 3px 0 0;
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+/* Cowrywise classic signature blue for inflows */
+.bar-column.income {
+    background-color: #0066f5;
+    opacity: 0.7;
+}
+
+/* Light muted slate for outflows */
+.bar-column.expense {
+    background-color: #cbd5e1;
+}
+
+.bar-column:hover,
+.bar-column.active-grow {
+    opacity: 1;
+}
+
+.bar-column.income.active-grow {
+    background-color: #0056cf;
+}
+
+/* Interactive subtle hovering label */
+.bar-column::after {
+    content: attr(data-label);
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.6rem;
+    font-weight: 600;
+    color: #0a2e65;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.bar-column:hover::after {
+    opacity: 1;
+}
+
+
   /* ------------------------------ */
 </style>
 </head>
@@ -1103,27 +1267,43 @@
         </div>
 
         <div class="card balance-card p-4 p-md-4">
-          <div class="d-flex justify-content-between align-items-start">
-            <div>
-              <p class="text-muted mb-2">Available balance</p>
-              <h1 class="balance-value" id="main-balance">••••</h1>
-            </div>
-            <button class="icon-btn" id="toggle-eye-btn" aria-label="Toggle visibility">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z" stroke="currentColor" stroke-width="1.8" />
-                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8" />
-              </svg>
-            </button>
-          </div>
-          <svg class="trend-line" viewBox="0 0 280 90" role="img" aria-label="Trend line">
-            <path d="M0 70 C35 62, 48 40, 74 45 S124 66, 148 52 S206 16, 236 24 S267 37, 280 18" />
-          </svg>
-          <div class="d-flex justify-content-between align-items-center mt-3">
-            <span class="pill">Return in Jul</span>
-            <span class="text-muted">+12.4%</span>
-          </div>
-        </div>
+  <div class="d-flex justify-content-between align-items-start">
+    <div>
+      <p class="text-muted mb-2">Available balance</p>
+      <h1 class="balance-value" id="main-balance">••••</h1>
+    </div>
+    <button class="icon-btn" id="toggle-eye-btn" aria-label="Toggle visibility">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z" stroke="currentColor" stroke-width="1.8" />
+        <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8" />
+      </svg>
+    </button>
+  </div>
 
+  <div class="balance-chart-zone my-3">
+    <div class="bar-track">
+      <div class="bar-column income" style="--bar-height: 55%;" data-label="In"></div>
+      <div class="bar-column expense" style="--bar-height: 30%;" data-label="Out"></div>
+    </div>
+    <div class="bar-track">
+      <div class="bar-column income" style="--bar-height: 75%;" data-label="In"></div>
+      <div class="bar-column expense" style="--bar-height: 45%;" data-label="Out"></div>
+    </div>
+    <div class="bar-track">
+      <div class="bar-column income" style="--bar-height: 60%;" data-label="In"></div>
+      <div class="bar-column expense" style="--bar-height: 25%;" data-label="Out"></div>
+    </div>
+    <div class="bar-track">
+      <div class="bar-column income active-grow" id="live-chart-in" style="--bar-height: 40%;" data-label="In"></div>
+      <div class="bar-column expense active-grow" id="live-chart-out" style="--bar-height: 20%;" data-label="Out"></div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center mt-3">
+    <span class="pill">Return in Jul</span>
+    <span class="fw-bold text-success" id="live-yield-percentage" style="font-size: 0.9rem;">+12.4%</span>
+  </div>
+</div>
         <div class="card p-4 mt-4">
           <div class="d-flex justify-content-between align-items-center mb-3">
             <h5 class="mb-0 fw-bold">Recent Transactions</h5>
@@ -1146,7 +1326,6 @@
               <div class="mt-3">
                 <button type="button" class="chip" data-amount="20000">₦20K</button>
                 <button type="button" class="chip" data-amount="50000">₦50K</button>
-                <button type="button" class="chip" data-amount="100000">$100</button>
                 <button type="button" class="chip" data-amount="100000">₦100K</button>
               </div>
             </div>
@@ -1290,7 +1469,7 @@
           </div>
           <div class="row g-3">
             <div class="col-12 col-lg-6">
-              <article class="invest-card green">
+              <article id="invest-card-stocks" class="invest-card green" style="cursor: pointer;">
                 <div class="d-flex justify-content-between align-items-center">
                   <span class="pill" style="margin: 20px 10px;">NG Stocks</span>
                   <span class="badge-empty" style="margin: 20px 10px;">ACTIVE</span>
@@ -1300,7 +1479,7 @@
               </article>
             </div>
             <div class="col-12 col-lg-6">
-              <article class="invest-card blue">
+              <article id="invest-card-funds" class="invest-card blue" style="cursor: pointer;">
                 <div class="d-flex justify-content-between align-items-center">
                   <span class="pill" style="margin: 20px 10px;">Naira Funds</span>
                   <span class="badge-empty" style="margin: 20px 10px;">ACTIVE</span>
@@ -1317,26 +1496,29 @@
             <h4 class="mb-0">More to invest in</h4>
             <span class="text-muted small">Explore</span>
           </div>
-          <div class="row g-3">
-            <div class="col-6 col-lg-4">
-              <article class="fund-tile tile-a">
-                <h5>Capital Growth</h5>
-                <p>Balanced mix</p>
-              </article>
-            </div>
-            <div class="col-6 col-lg-4">
-              <article class="fund-tile tile-b">
-                <h5>Income Fund</h5>
-                <p>Consistent yield</p>
-              </article>
-            </div>
-            <div class="col-6 col-lg-4">
-              <article class="fund-tile tile-c">
-                <h5>Global Index</h5>
-                <p>Broader reach</p>
-              </article>
-            </div>
-          </div>
+         <div class="row g-3">
+  <div class="col-6 col-lg-4">
+    <!-- Added id and inline pointer directly to your original element -->
+    <article id="more-invest-capital" class="fund-tile tile-a" style="cursor: pointer;">
+      <h5>Capital Growth</h5>
+      <p>Balanced mix</p>
+    </article>
+  </div>
+  <div class="col-6 col-lg-4">
+    <!-- Added id and inline pointer directly to your original element -->
+    <article id="more-invest-income" class="fund-tile tile-b" style="cursor: pointer;">
+      <h5>Income Fund</h5>
+      <p>Consistent yield</p>
+    </article>
+  </div>
+  <div class="col-6 col-lg-4">
+    <!-- Added id and inline pointer directly to your original element -->
+    <article id="more-invest-global" class="fund-tile tile-c" style="cursor: pointer;">
+      <h5>Global Index</h5>
+      <p>Broader reach</p>
+    </article>
+  </div>
+</div>
         </div>
       </section>
 
@@ -1352,25 +1534,46 @@
             </div>
           </div>
           <div class="col-12 col-lg-6">
-            <div class="card p-4 p-lg-5">
-              <p class="eyebrow mb-2">Nest</p>
-              <h2 class="mb-3">Set up your child's Nest</h2>
-              <form>
-                <div class="mb-3">
-                  <label class="form-label">First name</label>
-                  <input type="text" class="form-control" placeholder="Ada" />
+            <div class="card p-4 p-lg-5" id="nest-card-content">
+
+              <div id="nest-setup-view">
+                <p class="eyebrow mb-2">Nest</p>
+                <h2 class="mb-3">Set up your child's Nest</h2>
+                <form>
+                  <div class="mb-3">
+                    <label class="form-label">First name</label>
+                    <input type="text" id="nest-child-firstname" class="form-control" placeholder="Ada" />
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Surname</label>
+                    <input type="text" id="nest-child-surname" class="form-control" placeholder="Okafor" />
+                  </div>
+                  <div class="mb-4">
+                    <label class="form-label">Date of Birth</label>
+                    <input type="date" id="nest-child-dob" class="form-control" />
+                  </div>
+                  <p class="disclaimer">Your data is protected and used only to personalize your Nest plan.</p>
+                  <button type="button" id="nest-continue-btn" class="btn btn-primary rounded-pill px-4"
+                    disabled>Continue</button>
+              </div>
+
+              <div id="nest-active-view" style="display: none;">
+                <p class="eyebrow mb-2">Nest Plan</p>
+                <h2 class="mb-1" style="color: #0a2e65; font-weight: 700;">👶 <span id="display-child-name"></span>'s
+                  Nest</h2>
+                <p class="text-muted small mb-4">Long-term education & growth maturity vault</p>
+
+                <div class="p-4 mb-4 rounded-3" style="background: #f8fafc; border: 1px dashed #e2e8f0;">
+                  <small class="text-muted d-block fw-semibold mb-1"
+                    style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px;">Total Nest
+                    Balance</small>
+                  <h2 id="display-nest-balance" style="color: #0066f5; font-weight: 700; margin: 0;">₦0.00</h2>
                 </div>
-                <div class="mb-3">
-                  <label class="form-label">Surname</label>
-                  <input type="text" class="form-control" placeholder="Okafor" />
-                </div>
-                <div class="mb-4">
-                  <label class="form-label">Date of Birth</label>
-                  <input type="date" class="form-control" />
-                </div>
-                <p class="disclaimer">Your data is protected and used only to personalize your Nest plan.</p>
-                <a href="#home" class="btn btn-primary rounded-pill px-4">Continue</a>
-              </form>
+
+                <button type="button" id="fund-nest-btn" class="btn btn-primary rounded-pill w-100 py-2fw-semibold">Fund
+                  Nest Account</button>
+              </div>
+
             </div>
           </div>
         </div>
@@ -1401,15 +1604,16 @@
             <span class="text-muted small">Short videos</span>
           </div>
           <div class="thumb-row">
-            <article class="video-card">
+            <!-- Added IDs and pointers directly to your original layout tags -->
+            <article class="video-card" id="video-card-1" style="cursor: pointer;">
               <div class="thumb thumb-a"><span class="play">▶</span></div>
               <h6>Stock Investing 1</h6>
             </article>
-            <article class="video-card">
+            <article class="video-card" id="video-card-2" style="cursor: pointer;">
               <div class="thumb thumb-b"><span class="play">▶</span></div>
               <h6>Stock Investing 2</h6>
             </article>
-            <article class="video-card">
+            <article class="video-card" id="video-card-3" style="cursor: pointer;">
               <div class="thumb thumb-c"><span class="play">▶</span></div>
               <h6>Stock Investing 7</h6>
             </article>
@@ -1423,7 +1627,8 @@
           </div>
           <div class="row g-3">
             <div class="col-12 col-md-6 col-xl-4">
-              <article class="article-card">
+              <!-- Added unique ID and pointer context -->
+              <article class="article-card" id="article-card-1" style="cursor: pointer;">
                 <div class="article-cover cover-a"></div>
                 <div class="p-3">
                   <h6>How beginners build confidence in investing</h6>
@@ -1432,7 +1637,7 @@
               </article>
             </div>
             <div class="col-12 col-md-6 col-xl-4">
-              <article class="article-card">
+              <article class="article-card" id="article-card-2" style="cursor: pointer;">
                 <div class="article-cover cover-b"></div>
                 <div class="p-3">
                   <h6>The power of automatic savings</h6>
@@ -1441,7 +1646,7 @@
               </article>
             </div>
             <div class="col-12 col-md-6 col-xl-4">
-              <article class="article-card">
+              <article class="article-card" id="article-card-3" style="cursor: pointer;">
                 <div class="article-cover cover-c"></div>
                 <div class="p-3">
                   <h6>What risk appetite really means</h6>
@@ -1452,7 +1657,6 @@
           </div>
         </div>
       </section>
-
       <section id="stash" class="page">
         <p class="eyebrow mb-1">Savings</p>
         <h2 class="mb-2">Naira Stash</h2>
@@ -1494,9 +1698,10 @@
       <p class="mb-4 text-muted">Invite a friend and enjoy a waiver on your next transfer.</p>
       <div class="code-pill mb-4">REF-2048</div>
       <div class="social-row mt-4">
-        <span>WhatsApp</span>
-        <span>Twitter</span>
-        <span>Copy link</span>
+        <!-- Added unique ID hooks and style pointers to your original tags -->
+        <span id="share-whatsapp-btn" style="cursor: pointer;">WhatsApp</span>
+        <span id="share-twitter-btn" style="cursor: pointer;">Twitter</span>
+        <span id="share-copy-btn" style="cursor: pointer;">Copy link</span>
       </div>
     </div>
   </div>
@@ -1527,35 +1732,44 @@
   let stashBalance = parseInt(localStorage.getItem('savedStashBalance')) || 0;
   let isBalanceHidden = true;
 
-  // 1. Personalization STATE ENGINE
+  window.onload = () => {
+    // 1. Personalization STATE ENGINE
     const nameDisplay = document.getElementById('user-display-name');
     const avatarDisplay = document.getElementById('user-avatar');
-    const mainGreeting = document.getElementById('main-page-greeting'); // Grab the new header element!
+    const mainGreeting = document.getElementById('main-page-greeting');
     const storedProfile = localStorage.getItem('activeUserProfile');
 
     if (storedProfile) {
       const userProfile = JSON.parse(storedProfile);
 
       if (userProfile.name) {
-        // A user is logged in! Update all display locations
         if (nameDisplay) nameDisplay.textContent = userProfile.name;
-        if (mainGreeting) mainGreeting.textContent = `Hi, ${userProfile.name.split(' ')[0]}!`; // Greets with just their first name!
-        
+        if (mainGreeting) mainGreeting.textContent = `Hi, ${userProfile.name.split(' ')[0]}!`;
         if (avatarDisplay) {
           avatarDisplay.textContent = userProfile.name.trim().charAt(0).toUpperCase();
         }
       } else {
-        // Fallback fields if blank
         if (nameDisplay) nameDisplay.textContent = "User";
         if (mainGreeting) mainGreeting.textContent = "Hi there!";
         if (avatarDisplay) avatarDisplay.textContent = "U";
       }
     } else {
-      // Nobody is logged in yet! Default to standard "User"
       if (nameDisplay) nameDisplay.textContent = "User";
       if (mainGreeting) mainGreeting.textContent = "Hi there!";
       if (avatarDisplay) avatarDisplay.textContent = "U";
     }
+
+    // 2. Setup Ledger and Balance UI
+    renderLedger();
+    const balanceText = document.getElementById('main-balance');
+    if (balanceText && !isBalanceHidden) {
+      balanceText.textContent = formatMoney(globalBalance);
+    }
+
+    renderBankAccounts();
+    updateStashUI();
+    setupNotificationCenter();
+  };
 
   // ==========================================
   // 1. HELPER & MODAL SYSTEMS
@@ -1632,10 +1846,6 @@
     localStorage.setItem('transactionHistory', JSON.stringify(transactions));
   }
 
-  // UPDATED: Added structural privacy checks to mask numbers with bullet tags
-  // ==========================================
-  // RENDER LEDGER ENGINE (With Isolated Privacy Masking)
-  // ==========================================
   function renderLedger() {
     const ledgerList = document.getElementById('ledger-list');
     const fullHistoryList = document.getElementById('full-history-list');
@@ -1643,19 +1853,16 @@
 
     const history = JSON.parse(localStorage.getItem('transactionHistory')) || [];
 
-    // A. RENDER PREVIEW CAPPED TO 3 ITEMS FOR HOME (With Privacy Masking)
+    // A. RENDER PREVIEW CAPPED TO EXACTLY 1 ITEM FOR HOME (With Privacy Masking)
     if (ledgerList) {
       if (history.length === 0) {
         ledgerList.innerHTML = '<p class="text-muted small mb-0">No recent transactions found.</p>';
       } else {
-        const previewItems = history.slice(0, 3);
+        // Change from .slice(0, 3) to .slice(0, 1) to show only the single latest item!
+        const previewItems = history.slice(0, 1);
 
         ledgerList.innerHTML = previewItems.map(tx => {
-          // Home page strictly respects the eye toggle status
-          const displayAmount = isBalanceHidden
-            ? "••••"
-            : `₦${Math.abs(tx.amount).toLocaleString()}`;
-
+          const displayAmount = isBalanceHidden ? "••••" : `₦${Math.abs(tx.amount).toLocaleString()}`;
           return `
             <div class="transaction-item d-flex justify-content-between align-items-center py-2">
               <div>
@@ -1671,7 +1878,7 @@
       }
     }
 
-    // B. RENDER UNCAPPED FULL SHEET LIST (Completely Ignores the Eye Toggle!)
+    // B. RENDER UNCAPPED FULL SHEET LIST (Always Visible)
     if (fullHistoryList) {
       if (history.length === 0) {
         fullHistoryList.innerHTML = '<p class="text-muted small mb-0">No recorded activity transactions found.</p>';
@@ -1690,13 +1897,96 @@
       }
     }
 
-    // C. RENDER THE ACTIVITY LIST INSIDE NOTIFICATION DRAWER
+
+
+    // ==========================================
+// INVESTMENT LOGIC ENGINE (Original UI Safe)
+    // ==========================================
+    let stocksInvestment = parseInt(localStorage.getItem('savedStocksInvest')) || 0;
+    let fundsInvestment = parseInt(localStorage.getItem('savedFundsInvest')) || 0;
+
+    function handleInvestmentClick(type, currentInvestmentName) {
+      const balanceText = document.getElementById('main-balance');
+
+      openCustomModal(
+        `Invest in ${currentInvestmentName}`,
+        `Available Wallet Balance: ₦${globalBalance.toLocaleString()}`,
+        [{ key: 'amount', placeholder: 'Enter Amount to Invest (₦)', type: 'number' }]
+      ).then(data => {
+        if (!data) return; // User clicked cancel
+
+        const amountToInvest = parseInt(data.amount);
+        if (isNaN(amountToInvest) || amountToInvest <= 0) return alert("Please enter a valid amount!");
+        if (amountToInvest > globalBalance) return showToast("Insufficient funds in your main balance!");
+
+        // 1. Process balance deduction from main wallet
+        globalBalance -= amountToInvest;
+        localStorage.setItem('savedBalance', globalBalance);
+
+        // 2. Accumulate invested balances in background memory
+        if (type === 'stocks') {
+          stocksInvestment += amountToInvest;
+          localStorage.setItem('savedStocksInvest', stocksInvestment);
+        } else if (type === 'funds') {
+          fundsInvestment += amountToInvest;
+          localStorage.setItem('savedFundsInvest', fundsInvestment);
+        }
+
+        // 3. Sync elements and log backend ledger items cleanly
+        if (balanceText && !isBalanceHidden) balanceText.textContent = formatMoney(globalBalance);
+
+        // Log investment as a debit transaction out of the wallet
+        addTransaction(-amountToInvest, `Invested in ${currentInvestmentName}`);
+        showToast(`Successfully invested ₦${amountToInvest.toLocaleString()} in ${currentInvestmentName}!`);
+      });
+    }
+
+    // Bind click listeners directly to your exact layout hooks
+    const stocksCard = document.getElementById('invest-card-stocks');
+    const fundsCard = document.getElementById('invest-card-funds');
+
+    if (stocksCard) {
+      stocksCard.addEventListener('click', () => {
+        handleInvestmentClick('stocks', 'Nigerian Stocks');
+      });
+    }
+
+    if (fundsCard) {
+      fundsCard.addEventListener('click', () => {
+        handleInvestmentClick('funds', 'Naira Mutual Funds');
+      });
+    }
+
+    // MOVED INSIDE: Bind click listeners to your precise fund-tile elements safely here
+    const capitalCard = document.getElementById('more-invest-capital');
+    const incomeCard = document.getElementById('more-invest-income');
+    const globalCard = document.getElementById('more-invest-global');
+
+    if (capitalCard) {
+      capitalCard.addEventListener('click', () => {
+        handleInvestmentClick('funds', 'Capital Growth Fund');
+      });
+    }
+
+    if (incomeCard) {
+      incomeCard.addEventListener('click', () => {
+        handleInvestmentClick('funds', 'Income Fund Plan');
+      });
+    }
+
+    if (globalCard) {
+      globalCard.addEventListener('click', () => {
+        handleInvestmentClick('stocks', 'Global Index Portfolio');
+      });
+    }
+
+    // C. RENDER THE ACTIVITY LIST INSIDE NOTIFICATION DRAWER (Always Visible)
     if (drawerList) {
       if (history.length === 0) {
         drawerList.innerHTML = '<p class="text-muted small mb-0">No new structural alerts recorded.</p>';
       } else {
         drawerList.innerHTML = history.map(tx => {
-          const drawerAmount = isBalanceHidden ? "••••" : `₦${Math.abs(tx.amount).toLocaleString()}`;
+          const drawerAmount = `₦${Math.abs(tx.amount).toLocaleString()}`;
           return `
             <div class="notification-item">
               <p class="small mb-0 fw-semibold">${tx.amount < 0 ? 'Debit Alert' : 'Credit Confirmation'}</p>
@@ -1707,7 +1997,7 @@
         }).join('');
       }
     }
-  }
+  } // (End of wrapper function where renderLedger/render interface runs)
 
   function addTransaction(amount, reference) {
     let history = JSON.parse(localStorage.getItem('transactionHistory')) || [];
@@ -1717,7 +2007,7 @@
   }
 
   // ==========================================
-  // 2. NAVIGATION ENGINE (Restructured Lifecycle Fixed)
+  // 2. NAVIGATION ENGINE
   // ==========================================
   const navLinks = document.querySelectorAll('.sidebar .nav-link');
   const pages = document.querySelectorAll('.page');
@@ -1762,7 +2052,7 @@
   window.addEventListener('hashchange', initializeRouting);
 
   // ==========================================
-  // 3. PRIVACY TOGGLE (With Ledger Refresh Hook)
+  // 3. PRIVACY TOGGLE
   // ==========================================
   const balanceText = document.getElementById('main-balance');
   const eyeBtn = document.getElementById('toggle-eye-btn');
@@ -1771,8 +2061,6 @@
     eyeBtn.addEventListener('click', () => {
       isBalanceHidden = !isBalanceHidden;
       balanceText.textContent = isBalanceHidden ? "••••" : formatMoney(globalBalance);
-
-      // Forces transactions to obscure or reveal alongside the main balance
       renderLedger();
     });
   }
@@ -1945,6 +2233,259 @@
     });
   }
 
+
+
+  // ==========================================
+  // ==========================================
+// ==========================================
+  // FINTECH SIMULATION INTEREST ENGINE
+  // ==========================================
+  let nestBalance = parseFloat(localStorage.getItem('savedNestBalance')) || 0;
+  let lastYieldTimestamp = localStorage.getItem('lastYieldTimestamp') || Date.now();
+
+  // Annual Percentage Yield setup (11.5% APY simulated)
+  const SIMULATED_APY = 0.115; 
+
+  function calculateAccumulatedInterest() {
+    if (nestBalance <= 0) return;
+
+    const now = Date.now();
+    const timePassedMs = now - parseInt(lastYieldTimestamp);
+    
+    if (timePassedMs > 0) {
+      // Breakdown APY down to a millisecond interest multiplier factor
+      const msInAYear = 365 * 24 * 60 * 60 * 1000;
+      const interestEarned = nestBalance * (SIMULATED_APY * (timePassedMs / msInAYear));
+      
+      if (interestEarned > 0) {
+        nestBalance += interestEarned;
+        localStorage.setItem('savedNestBalance', nestBalance);
+        
+        // If interest is substantial enough, log it silently to transaction ledger history
+        if (interestEarned >= 0.01) {
+          addSimulationInterestLog(interestEarned);
+        }
+      }
+    }
+    localStorage.setItem('lastYieldTimestamp', now.toString());
+  }
+
+  function addSimulationInterestLog(amount) {
+    let history = JSON.parse(localStorage.getItem('transactionHistory')) || [];
+    // Only log if the last item wasn't an interest payout from the same minute
+    history.unshift({ amount: amount, date: new Date().toLocaleDateString() + " (Yield Payout)" });
+    localStorage.setItem('transactionHistory', JSON.stringify(history));
+    if (typeof renderLedger === "function") renderLedger();
+  }
+
+  function renderNestState() {
+    // Run compound accumulator on view refresh
+    calculateAccumulatedInterest();
+
+    const setupView = document.getElementById('nest-setup-view');
+    const activeView = document.getElementById('nest-active-view');
+    const childNameDisplay = document.getElementById('display-child-name');
+    const nestBalanceDisplay = document.getElementById('display-nest-balance');
+
+    const savedNestData = localStorage.getItem('activeChildNest');
+
+    if (savedNestData && setupView && activeView) {
+      const nestProfile = JSON.parse(savedNestData);
+      
+      setupView.style.display = 'none';
+      activeView.style.display = 'block';
+      
+      if (childNameDisplay) childNameDisplay.textContent = nestProfile.firstName;
+      if (nestBalanceDisplay) {
+        // Render with two clear decimal points so you can literally watch the kobo grow!
+        nestBalanceDisplay.textContent = "₦" + nestBalance.toLocaleString('en-NG', { 
+          minimumFractionDigits: 2, 
+          maximumFractionDigits: 2 
+        });
+      }
+    }
+  }
+
+  // Hook validation triggers to input fields dynamically
+  const nestContainer = document.getElementById('nest-setup-view');
+  if (nestContainer) {
+    const checkForm = () => {
+      const firstName = document.getElementById('nest-child-firstname').value.trim();
+      const surname = document.getElementById('nest-child-surname').value.trim();
+      const dob = document.getElementById('nest-child-dob').value;
+      const btn = document.getElementById('nest-continue-btn');
+      if (btn) {
+        if (firstName && surname && dob) {
+          btn.removeAttribute('disabled');
+          btn.style.opacity = "1";
+        } else {
+          btn.setAttribute('disabled', 'true');
+          btn.style.opacity = "0.6";
+        }
+      }
+    };
+    nestContainer.querySelectorAll('input').forEach(i => {
+      i.addEventListener('input', checkForm);
+      i.addEventListener('change', checkForm);
+    });
+  }
+
+  // Form Submission Interception
+  const nestContinueBtn = document.getElementById('nest-continue-btn');
+  if (nestContinueBtn) {
+    nestContinueBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const firstName = document.getElementById('nest-child-firstname').value.trim();
+      const surname = document.getElementById('nest-child-surname').value.trim();
+      const dob = document.getElementById('nest-child-dob').value;
+
+      const nestProfile = { firstName, surname, dob };
+      localStorage.setItem('activeChildNest', JSON.stringify(nestProfile));
+      localStorage.setItem('lastYieldTimestamp', Date.now().toString());
+      
+      showToast(`Nest savings plan initialized for ${firstName}!`);
+      renderNestState();
+    });
+  }
+
+  // Allocation Deposit Funding Triggers
+  const fundNestBtn = document.getElementById('fund-nest-btn');
+  if (fundNestBtn) {
+    fundNestBtn.addEventListener('click', () => {
+      const balanceText = document.getElementById('main-balance');
+      const savedNestProfile = JSON.parse(localStorage.getItem('activeChildNest'));
+
+      openCustomModal(
+        `Fund ${savedNestProfile.firstName}'s Nest`,
+        `Available Wallet Balance: ₦${globalBalance.toLocaleString()}`,
+        [{ key: 'amount', placeholder: 'Allocation Amount (₦)', type: 'number' }]
+      ).then(data => {
+        if (!data) return;
+
+        const amountToLock = parseInt(data.amount);
+        if (isNaN(amountToLock) || amountToLock <= 0) return alert("Please specify a valid numeric amount!");
+        if (amountToLock > globalBalance) return showToast("Insufficient wallet funds available!");
+
+        globalBalance -= amountToLock;
+        nestBalance += amountToLock;
+
+        localStorage.setItem('savedBalance', globalBalance);
+        localStorage.setItem('savedNestBalance', nestBalance);
+        localStorage.setItem('lastYieldTimestamp', Date.now().toString()); // reset clock anchor
+
+        if (balanceText && !isBalanceHidden) balanceText.textContent = formatMoney(globalBalance);
+        renderNestState();
+        addTransaction(-amountToLock, `Funded ${savedNestProfile.firstName}'s Nest`);
+        showToast(`Allocated ₦${amountToLock.toLocaleString()} to ${savedNestProfile.firstName}'s vault!`);
+      });
+    });
+  }
+
+  // Kickstart system render loop checking
+  renderNestState();
+
+  // ==========================================
+  // COWRYWISE EDUCATION MEDIA & SYSTEM LOADER
+  // ==========================================
+  const cowrywiseArticles = {
+    1: {
+      title: "How beginners build confidence in investing",
+      content: "Investing can feel intimidating, but the secret lies in starting small. By using diversified mutual funds rather than risking everything on single stocks, you spread out your market exposure. The consistency of putting away small amounts weekly builds emotional resilience to market swings and transforms saving into a natural habit."
+    },
+    2: {
+      title: "The power of automatic savings",
+      content: "Relying on willpower to save money rarely succeeds. Life always finds a way to introduce sudden expenses. Automation removes the cognitive load of saving entirely. By setting up periodic direct debit triggers, money is safely routed into your secure financial vaults the morning your payment clears, guaranteeing growth."
+    },
+    3: {
+      title: "What risk appetite really means",
+      content: "Your financial risk appetite isn't just about how much volatility you can handle emotionally—it is directly bounded by your timeline and real capital goals. Short term target funds require secure, high-yield preservation accounts, while multi-year long term funds can ride equity trends to capture powerful compound returns over cycles."
+    }
+  };
+
+  function openArticleReader(id) {
+    const article = cowrywiseArticles[id];
+    if (!article) return;
+
+    // Uses your existing promise modal seamlessly as a text pane viewport!
+    openCustomModal(article.title, article.content, []);
+  }
+
+  // --- Map Event Handlers directly to your live design hooks ---
+  const v1 = document.getElementById('video-card-1');
+  const v2 = document.getElementById('video-card-2');
+  const v3 = document.getElementById('video-card-3');
+
+  // Updated to active episodes from the Cowrywise stock guide series!
+  if (v1) v1.addEventListener('click', () => window.open('https://www.youtube.com/watch?v=qXLLmGUkuWY', '_blank'));
+  if (v2) v2.addEventListener('click', () => window.open('https://www.youtube.com/watch?v=YYZ6OMptlNY', '_blank'));
+  if (v3) v3.addEventListener('click', () => window.open('https://www.youtube.com/watch?v=AOcmfYNuDu0', '_blank'));
+
+  const a1 = document.getElementById('article-card-1');
+  const a2 = document.getElementById('article-card-2');
+  const a3 = document.getElementById('article-card-3');
+
+  if (a1) a1.addEventListener('click', () => openArticleReader(1));
+  if (a2) a2.addEventListener('click', () => openArticleReader(2));
+  if (a3) a3.addEventListener('click', () => openArticleReader(3));
+
+
+
+// ==========================================
+  // ENGINE: DYNAMIC REFERRAL SHARE HANDLERS
+  // ==========================================
+  function handleReferralSharing() {
+    const storedProfile = localStorage.getItem('activeUserProfile');
+    let username = "user";
+
+    if (storedProfile) {
+      const userProfile = JSON.parse(storedProfile);
+      username = userProfile.username || "user";
+    }
+
+    // Generate a unique simulated Cowrywise referral link
+    const referralLink = `https://cowrywise.com/r/${username}`;
+    const shareText = `Hey! Start your automated savings and investment journey on Cowrywise using my link: ${referralLink}`;
+
+    const whatsappBtn = document.getElementById('share-whatsapp-btn');
+    const twitterBtn = document.getElementById('share-twitter-btn');
+    const copyBtn = document.getElementById('share-copy-btn');
+
+    // 1. WhatsApp Web/Mobile Direct Share
+    if (whatsappBtn) {
+      whatsappBtn.addEventListener('click', () => {
+        const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
+        window.open(url, '_blank');
+      });
+    }
+
+    // 2. Twitter (X) Share Intent
+    if (twitterBtn) {
+      twitterBtn.addEventListener('click', () => {
+        const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+        window.open(url, '_blank');
+      });
+    }
+
+    // 3. Native Clipboard Copy System with Toast feedback
+    if (copyBtn) {
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(referralLink)
+          .then(() => {
+            showToast("Referral link copied to clipboard!");
+          })
+          .catch(err => {
+            console.error("Clipboard error:", err);
+            alert("Could not copy link. Here it is: " + referralLink);
+          });
+      });
+    }
+  }
+
+  // Initialize sharing listeners immediately
+  handleReferralSharing();
+
+  
+
   // ==========================================
   // 8. ENGINE: NOTIFICATION SLIDING DRAWER SHEET
   // ==========================================
@@ -1956,27 +2497,30 @@
     const seeAllLink = document.getElementById('see-all-history');
 
     if (bellBtn && drawer) {
-      bellBtn.onclick = (e) => {
+      bellBtn.addEventListener('click', (e) => {
         e.preventDefault();
         drawer.classList.add('open');
         if (badge) badge.style.display = 'none';
-      };
+      });
     }
 
     if (closeBtn && drawer) {
-      closeBtn.onclick = () => {
+      closeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
         drawer.classList.remove('open');
-      };
+      });
     }
 
     if (seeAllLink) {
-      seeAllLink.onclick = (e) => {
+      seeAllLink.addEventListener('click', (e) => {
         e.preventDefault();
         window.location.hash = 'history';
         goToPage('history');
-      };
+      });
     }
   }
+
+  setupNotificationCenter();
 
   // ==========================================
   // 9. ENGINE: REFERRAL MODAL ACTIVE CONTROLLERS
