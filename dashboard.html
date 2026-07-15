@@ -1,23 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
-  <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cowrywise Dashboard</title>
+
   <script>
     (function () {
-      // The Bouncer checks if the user badge exists in local storage
       if (!localStorage.getItem('activeUserProfile')) {
-        // If not, instantly bounce them to the login gate before the page even renders
-        window.location.replace('index.html'); 
+        window.location.replace('index.html');
       }
     })();
   </script>
 
-  <!-- Your existing CSS stylesheets links go right below here -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cowrywise Dashboard</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <script src="https://js.paystack.co/v1/inline.js"></script>
 </head>
@@ -1083,90 +1078,96 @@
    ACTIVITY CENTER SCROLL ENGINE
    ========================================== */
 
-/* 1. Set the main drawer container to an exact viewport height and lock standard scroll */
-#notification-drawer {
+  /* 1. Set the main drawer container to an exact viewport height and lock standard scroll */
+  #notification-drawer {
     display: flex !important;
     flex-direction: column !important;
     height: 100vh !important;
     max-height: 100vh !important;
-    overflow: hidden !important; /* Prevents the heading from moving */
+    overflow: hidden !important;
+    /* Prevents the heading from moving */
     padding-bottom: 20px;
-}
+  }
 
-/* 2. Target the actual transaction list to scroll independently */
-#drawer-activity-list {
+  /* 2. Target the actual transaction list to scroll independently */
+  #drawer-activity-list {
     flex-grow: 1;
-    overflow-y: auto !important; /* Unlocks the smooth vertical scroll track */
-    padding-right: 4px;          /* Prevents the scrollbar from clipping text entries */
-    
+    overflow-y: auto !important;
+    /* Unlocks the smooth vertical scroll track */
+    padding-right: 4px;
+    /* Prevents the scrollbar from clipping text entries */
+
     /* Clean custom scrollbar formatting for a premium Cowrywise feel */
     scrollbar-width: thin;
     scrollbar-color: #cbd5e1 transparent;
-}
+  }
 
-/* Scrollbar layout tweaks for modern Webkit browsers (Chrome, Edge, Safari) */
-#drawer-activity-list::-webkit-scrollbar {
+  /* Scrollbar layout tweaks for modern Webkit browsers (Chrome, Edge, Safari) */
+  #drawer-activity-list::-webkit-scrollbar {
     width: 5px;
-}
-#drawer-activity-list::-webkit-scrollbar-thumb {
+  }
+
+  #drawer-activity-list::-webkit-scrollbar-thumb {
     background-color: #cbd5e1;
     border-radius: 10px;
-}
-#drawer-activity-list::-webkit-scrollbar-track {
+  }
+
+  #drawer-activity-list::-webkit-scrollbar-track {
     background: transparent;
-}
+  }
 
 
-/* ==========================================
+  /* ==========================================
    BALANCE BAR CHART UI STYLES
    ========================================== */
-.balance-chart-zone {
+  .balance-chart-zone {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    height: 70px; /* Perfectly fills the vertical space of the old trend line */
+    height: 70px;
+    /* Perfectly fills the vertical space of the old trend line */
     padding: 0 5px;
     gap: 12px;
-}
+  }
 
-.bar-track {
+  .bar-track {
     display: flex;
     align-items: flex-end;
     gap: 3px;
     height: 100%;
     flex-grow: 1;
-}
+  }
 
-.bar-column {
+  .bar-column {
     width: 100%;
     height: var(--bar-height, 15%);
     border-radius: 3px 3px 0 0;
     transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
-}
+  }
 
-/* Cowrywise classic signature blue for inflows */
-.bar-column.income {
+  /* Cowrywise classic signature blue for inflows */
+  .bar-column.income {
     background-color: #0066f5;
     opacity: 0.7;
-}
+  }
 
-/* Light muted slate for outflows */
-.bar-column.expense {
+  /* Light muted slate for outflows */
+  .bar-column.expense {
     background-color: #cbd5e1;
-}
+  }
 
-.bar-column:hover,
-.bar-column.active-grow {
+  .bar-column:hover,
+  .bar-column.active-grow {
     opacity: 1;
-}
+  }
 
-.bar-column.income.active-grow {
+  .bar-column.income.active-grow {
     background-color: #0056cf;
-}
+  }
 
-/* Interactive subtle hovering label */
-.bar-column::after {
+  /* Interactive subtle hovering label */
+  .bar-column::after {
     content: attr(data-label);
     position: absolute;
     top: -18px;
@@ -1177,12 +1178,25 @@
     color: #0a2e65;
     opacity: 0;
     transition: opacity 0.2s ease;
-}
+  }
 
-.bar-column:hover::after {
+  .bar-column:hover::after {
     opacity: 1;
-}
+  }
 
+  /* Custom Modal Show Engine */
+  .modal.custom-show {
+    display: flex !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+    /* Dim the dashboard background */
+    opacity: 1 !important;
+  }
+
+  .modal.custom-show .modal-dialog {
+    transform: none !important;
+    margin: auto;
+    /* Keep it perfectly centered */
+  }
 
   /* ------------------------------ */
 </style>
@@ -1222,12 +1236,15 @@
         </nav>
 
         <!-- Add this to the bottom of your sidebar links container -->
-<a href="#" id="logout-btn" class="nav-link text-danger mt-auto">
-  <svg viewBox="0 0 24 24" fill="none" width="20" height="20" style="margin-right: 8px;">
-    <path d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-  <span>Log Out</span>
-</a>
+        <a href="#" id="logout-btn" class="nav-link text-danger mt-auto">
+          <svg viewBox="0 0 24 24" fill="none" width="20" height="20" style="margin-right: 8px;">
+            <path
+              d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
+              stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <span>Log Out</span>
+        </a>
+
       </div>
 
       <div class="sidebar-footer">
@@ -1263,43 +1280,45 @@
         </div>
 
         <div class="card balance-card p-4 p-md-4">
-  <div class="d-flex justify-content-between align-items-start">
-    <div>
-      <p class="text-muted mb-2">Available balance</p>
-      <h1 class="balance-value" id="main-balance">••••</h1>
-    </div>
-    <button class="icon-btn" id="toggle-eye-btn" aria-label="Toggle visibility">
-      <svg viewBox="0 0 24 24" fill="none">
-        <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z" stroke="currentColor" stroke-width="1.8" />
-        <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8" />
-      </svg>
-    </button>
-  </div>
+          <div class="d-flex justify-content-between align-items-start">
+            <div>
+              <p class="text-muted mb-2">Available balance</p>
+              <h1 class="balance-value" id="main-balance">••••</h1>
+            </div>
+            <button class="icon-btn" id="toggle-eye-btn" aria-label="Toggle visibility">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z" stroke="currentColor" stroke-width="1.8" />
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8" />
+              </svg>
+            </button>
+          </div>
 
-  <div class="balance-chart-zone my-3">
-    <div class="bar-track">
-      <div class="bar-column income" style="--bar-height: 55%;" data-label="In"></div>
-      <div class="bar-column expense" style="--bar-height: 30%;" data-label="Out"></div>
-    </div>
-    <div class="bar-track">
-      <div class="bar-column income" style="--bar-height: 75%;" data-label="In"></div>
-      <div class="bar-column expense" style="--bar-height: 45%;" data-label="Out"></div>
-    </div>
-    <div class="bar-track">
-      <div class="bar-column income" style="--bar-height: 60%;" data-label="In"></div>
-      <div class="bar-column expense" style="--bar-height: 25%;" data-label="Out"></div>
-    </div>
-    <div class="bar-track">
-      <div class="bar-column income active-grow" id="live-chart-in" style="--bar-height: 40%;" data-label="In"></div>
-      <div class="bar-column expense active-grow" id="live-chart-out" style="--bar-height: 20%;" data-label="Out"></div>
-    </div>
-  </div>
+          <div class="balance-chart-zone my-3">
+            <div class="bar-track">
+              <div class="bar-column income" style="--bar-height: 55%;" data-label="In"></div>
+              <div class="bar-column expense" style="--bar-height: 30%;" data-label="Out"></div>
+            </div>
+            <div class="bar-track">
+              <div class="bar-column income" style="--bar-height: 75%;" data-label="In"></div>
+              <div class="bar-column expense" style="--bar-height: 45%;" data-label="Out"></div>
+            </div>
+            <div class="bar-track">
+              <div class="bar-column income" style="--bar-height: 60%;" data-label="In"></div>
+              <div class="bar-column expense" style="--bar-height: 25%;" data-label="Out"></div>
+            </div>
+            <div class="bar-track">
+              <div class="bar-column income active-grow" id="live-chart-in" style="--bar-height: 40%;" data-label="In">
+              </div>
+              <div class="bar-column expense active-grow" id="live-chart-out" style="--bar-height: 20%;"
+                data-label="Out"></div>
+            </div>
+          </div>
 
-  <div class="d-flex justify-content-between align-items-center mt-3">
-    <span class="pill">Return in Jul</span>
-    <span class="fw-bold text-success" id="live-yield-percentage" style="font-size: 0.9rem;">+12.4%</span>
-  </div>
-</div>
+          <div class="d-flex justify-content-between align-items-center mt-3">
+            <span class="pill">Return in Jul</span>
+            <span class="fw-bold text-success" id="live-yield-percentage" style="font-size: 0.9rem;">+12.4%</span>
+          </div>
+        </div>
         <div class="card p-4 mt-4">
           <div class="d-flex justify-content-between align-items-center mb-3">
             <h5 class="mb-0 fw-bold">Recent Transactions</h5>
@@ -1492,29 +1511,29 @@
             <h4 class="mb-0">More to invest in</h4>
             <span class="text-muted small">Explore</span>
           </div>
-         <div class="row g-3">
-  <div class="col-6 col-lg-4">
-    <!-- Added id and inline pointer directly to your original element -->
-    <article id="more-invest-capital" class="fund-tile tile-a" style="cursor: pointer;">
-      <h5>Capital Growth</h5>
-      <p>Balanced mix</p>
-    </article>
-  </div>
-  <div class="col-6 col-lg-4">
-    <!-- Added id and inline pointer directly to your original element -->
-    <article id="more-invest-income" class="fund-tile tile-b" style="cursor: pointer;">
-      <h5>Income Fund</h5>
-      <p>Consistent yield</p>
-    </article>
-  </div>
-  <div class="col-6 col-lg-4">
-    <!-- Added id and inline pointer directly to your original element -->
-    <article id="more-invest-global" class="fund-tile tile-c" style="cursor: pointer;">
-      <h5>Global Index</h5>
-      <p>Broader reach</p>
-    </article>
-  </div>
-</div>
+          <div class="row g-3">
+            <div class="col-6 col-lg-4">
+              <!-- Added id and inline pointer directly to your original element -->
+              <article id="more-invest-capital" class="fund-tile tile-a" style="cursor: pointer;">
+                <h5>Capital Growth</h5>
+                <p>Balanced mix</p>
+              </article>
+            </div>
+            <div class="col-6 col-lg-4">
+              <!-- Added id and inline pointer directly to your original element -->
+              <article id="more-invest-income" class="fund-tile tile-b" style="cursor: pointer;">
+                <h5>Income Fund</h5>
+                <p>Consistent yield</p>
+              </article>
+            </div>
+            <div class="col-6 col-lg-4">
+              <!-- Added id and inline pointer directly to your original element -->
+              <article id="more-invest-global" class="fund-tile tile-c" style="cursor: pointer;">
+                <h5>Global Index</h5>
+                <p>Broader reach</p>
+              </article>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1719,6 +1738,39 @@
     </div>
   </div>
 
+
+
+  <div class="modal fade" id="logoutConfirmModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 400px;">
+      <div class="modal-content"
+        style="border: none; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); background-color: #ffffff;">
+        <div class="modal-body text-center" style="padding: 40px 30px;">
+          <div
+            style="background-color: #fff3cd; color: #ffc107; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 24px;">
+            ⚠️
+          </div>
+          <h4 style="color: #0a2e65; font-weight: 700; font-family: 'DM Sans', sans-serif; margin-bottom: 10px;">Logging
+            Out?</h4>
+          <p style="color: #687ea1; font-size: 14px; font-family: 'DM Sans', sans-serif; margin-bottom: 30px;">Are you
+            sure you want to end your secure dashboard session?</p>
+
+          <div style="display: flex; gap: 15px;">
+            <button type="button" class="btn" data-bs-dismiss="modal"
+              style="flex: 1; background-color: #f4f7fa; color: #0a2e65; font-weight: 600; padding: 12px; border-radius: 6px; font-size: 14px; border: none;">
+              Cancel
+            </button>
+            <button type="button" id="confirm-logout-btn" class="btn"
+              style="flex: 1; background-color: #dc3545; color: white; font-weight: 600; padding: 12px; border-radius: 6px; font-size: 14px; border: none;">
+              Yes, Log out
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
 </body>
 <script type="module">
   // ==========================================
@@ -1730,6 +1782,7 @@
 
   window.onload = () => {
     // 1. Personalization STATE ENGINE
+    // 1. Personalization STATE ENGINE
     const nameDisplay = document.getElementById('user-display-name');
     const avatarDisplay = document.getElementById('user-avatar');
     const mainGreeting = document.getElementById('main-page-greeting');
@@ -1738,16 +1791,14 @@
     if (storedProfile) {
       const userProfile = JSON.parse(storedProfile);
 
-      if (userProfile.name) {
-        if (nameDisplay) nameDisplay.textContent = userProfile.name;
-        if (mainGreeting) mainGreeting.textContent = `Hi, ${userProfile.name.split(' ')[0]}!`;
-        if (avatarDisplay) {
-          avatarDisplay.textContent = userProfile.name.trim().charAt(0).toUpperCase();
-        }
-      } else {
-        if (nameDisplay) nameDisplay.textContent = "User";
-        if (mainGreeting) mainGreeting.textContent = "Hi there!";
-        if (avatarDisplay) avatarDisplay.textContent = "U";
+      // Look for any variation of name stored in local storage (name or firstName)
+      const rawName = userProfile.name || userProfile.firstName || "User";
+      const cleanName = rawName.trim().charAt(0).toUpperCase() + rawName.trim().slice(1);
+
+      if (nameDisplay) nameDisplay.textContent = cleanName;
+      if (mainGreeting) mainGreeting.textContent = `Hi, ${cleanName.split(' ')[0]}!`;
+      if (avatarDisplay) {
+        avatarDisplay.textContent = cleanName.charAt(0).toUpperCase();
       }
     } else {
       if (nameDisplay) nameDisplay.textContent = "User";
@@ -1896,7 +1947,7 @@
 
 
     // ==========================================
-// INVESTMENT LOGIC ENGINE (Original UI Safe)
+    // INVESTMENT LOGIC ENGINE (Original UI Safe)
     // ==========================================
     let stocksInvestment = parseInt(localStorage.getItem('savedStocksInvest')) || 0;
     let fundsInvestment = parseInt(localStorage.getItem('savedFundsInvest')) || 0;
@@ -2030,8 +2081,16 @@
     }
   }
 
+  // ==========================================
+  // 2. NAVIGATION ENGINE (UPDATED TO IGNORE LOGOUT)
+  // ==========================================
   navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
+      // If they clicked the Log Out button, ignore it so Bootstrap can open the modal!
+      if (link.id === 'logout-btn') {
+        return;
+      }
+
       e.preventDefault();
       const targetId = link.getAttribute('href').replace('#', '');
       window.location.hash = targetId;
@@ -2233,30 +2292,30 @@
 
   // ==========================================
   // ==========================================
-// ==========================================
+  // ==========================================
   // FINTECH SIMULATION INTEREST ENGINE
   // ==========================================
   let nestBalance = parseFloat(localStorage.getItem('savedNestBalance')) || 0;
   let lastYieldTimestamp = localStorage.getItem('lastYieldTimestamp') || Date.now();
 
   // Annual Percentage Yield setup (11.5% APY simulated)
-  const SIMULATED_APY = 0.115; 
+  const SIMULATED_APY = 0.115;
 
   function calculateAccumulatedInterest() {
     if (nestBalance <= 0) return;
 
     const now = Date.now();
     const timePassedMs = now - parseInt(lastYieldTimestamp);
-    
+
     if (timePassedMs > 0) {
       // Breakdown APY down to a millisecond interest multiplier factor
       const msInAYear = 365 * 24 * 60 * 60 * 1000;
       const interestEarned = nestBalance * (SIMULATED_APY * (timePassedMs / msInAYear));
-      
+
       if (interestEarned > 0) {
         nestBalance += interestEarned;
         localStorage.setItem('savedNestBalance', nestBalance);
-        
+
         // If interest is substantial enough, log it silently to transaction ledger history
         if (interestEarned >= 0.01) {
           addSimulationInterestLog(interestEarned);
@@ -2287,16 +2346,16 @@
 
     if (savedNestData && setupView && activeView) {
       const nestProfile = JSON.parse(savedNestData);
-      
+
       setupView.style.display = 'none';
       activeView.style.display = 'block';
-      
+
       if (childNameDisplay) childNameDisplay.textContent = nestProfile.firstName;
       if (nestBalanceDisplay) {
         // Render with two clear decimal points so you can literally watch the kobo grow!
-        nestBalanceDisplay.textContent = "₦" + nestBalance.toLocaleString('en-NG', { 
-          minimumFractionDigits: 2, 
-          maximumFractionDigits: 2 
+        nestBalanceDisplay.textContent = "₦" + nestBalance.toLocaleString('en-NG', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
         });
       }
     }
@@ -2338,7 +2397,7 @@
       const nestProfile = { firstName, surname, dob };
       localStorage.setItem('activeChildNest', JSON.stringify(nestProfile));
       localStorage.setItem('lastYieldTimestamp', Date.now().toString());
-      
+
       showToast(`Nest savings plan initialized for ${firstName}!`);
       renderNestState();
     });
@@ -2426,7 +2485,7 @@
 
 
 
-// ==========================================
+  // ==========================================
   // ENGINE: DYNAMIC REFERRAL SHARE HANDLERS
   // ==========================================
   function handleReferralSharing() {
@@ -2480,7 +2539,7 @@
   // Initialize sharing listeners immediately
   handleReferralSharing();
 
-  
+
 
   // ==========================================
   // 8. ENGINE: NOTIFICATION SLIDING DRAWER SHEET
@@ -2537,19 +2596,37 @@
     });
   }
 
-// ==========================================
-  // LOGOUT CONTROLLER
+  // ==========================================
+  // ==========================================
+  // CUSTOM CSS/HTML MODAL CONTROLLER
   // ==========================================
   const logoutBtn = document.getElementById('logout-btn');
+  const logoutModal = document.getElementById('logoutConfirmModal');
+  const confirmLogoutBtn = document.getElementById('confirm-logout-btn');
 
-  if (logoutBtn) {
+  // Find the cancel button inside your modal structure
+  const cancelBtn = logoutModal ? logoutModal.querySelector('[data-bs-dismiss="modal"]') : null;
+
+  // 1. When they click "Log Out" in the sidebar, add the show class!
+  if (logoutBtn && logoutModal) {
     logoutBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      
-      // Destroy the active user session pass completely
+      logoutModal.classList.add('custom-show');
+    });
+  }
+
+  // 2. When they click "Cancel", remove the show class!
+  if (cancelBtn && logoutModal) {
+    cancelBtn.addEventListener('click', () => {
+      logoutModal.classList.remove('custom-show');
+    });
+  }
+
+  // 3. When they click "Yes, Log out", process the logout!
+  if (confirmLogoutBtn) {
+    confirmLogoutBtn.addEventListener('click', () => {
       localStorage.removeItem('activeUserProfile');
-      
-      // Kick them out to the login gate instantly
+      localStorage.removeItem('pendingEmail');
       window.location.replace('index.html');
     });
   }
